@@ -1,0 +1,9 @@
+/runtime
+/public/upload
+/public/qrimg
+.idea/
+.project
+.env
+.vscode/
+/.htaccess
+.user.ini

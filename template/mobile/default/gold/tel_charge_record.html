@@ -1,0 +1,63 @@
+<include file="public/header" title="话费充值记录"/>
+<include file="public/header_nav" title="话费充值记录"  href="javascript:history.go(-1);"/>
+<style>
+    .rc_box{
+        background-color: #f7f7f7;
+    }
+    .rc_box .rc_ul{
+        padding:  .3rem;
+    }
+    .rc_box .rc_ul li{
+        background-color: #fff;
+        margin-bottom: .3rem;
+    }
+    .rc_box .rc_ul .time-fan{
+        position: relative;
+        right: 0;
+    }
+    .sell-data-fan .right-sell3 .sell-statu-ok{
+        background-color: #f7f7f7;
+        width: 3rem;
+        padding: .3rem 0;
+        border-radius: .2rem;
+        color: #9a9a9a;
+    }
+    .sell-data-fan .right-sell3{
+        align-self: center;
+    }
+</style>
+<section>
+        <div class="rc_box" >
+            <ul class="rc_ul" >
+                <volist name="lists" id="v">
+                    <li>
+                        <div class="sell-data-fan">
+                            <div class="left-sell-fan">
+                                <p> 手机号：
+                                    <span style="color:#2A81F4">{$v.phone}</span>
+                                </p>
+                                <p style="margin-top: .213rem">充值金额：
+                                    <span>{$v.money}</span>
+                                </p>
+                                <p style="margin-top: .213rem">手续费：
+                                        <span style="color:red;">{$v.fee}</span>
+                                </p>
+                                <p style="margin-top: .213rem">运营商：
+                                    <span>{$v.choice_name}</span>
+                                </p>
+                            
+                                <p style="margin-top: .213rem" class="time-fan">充值时间:<span>{$v.create_time}</span></p>
+                            </div>
+                            
+                            <div class="right-sell3 gm-btn">
+                                <div class="sell-statu-ok"  style="background-color: #f1ad46;" >{$v.status_name}</div>
+                            </div>
+                        </div>
+                    </li>
+               </volist>
+            </ul>
+           
+        </div>
+    </section>
+</body>
+</html>

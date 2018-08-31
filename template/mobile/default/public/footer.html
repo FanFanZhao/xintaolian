@@ -1,0 +1,30 @@
+<!-- 
+    <a id="gotop" href="javascript:$('html,body').animate({'scrollTop':0},600);" style="display: block;width: 0.853rem;height: 0.853rem;position: fixed; bottom: 2.027rem;right: 8px; background-color: rgba(243,241,241,0.5);border: 1px solid #CCC;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;">
+
+        <img src="__STATIC__/images/topup.png" style="display: block;width: 0.853rem;height: 0.853rem;">
+
+    </a> -->
+    
+</footer>
+<div id="footers" style="z-index: 9999999;">
+    <a <if condition="CONTROLLER_NAME eq 'Index'"> class="on" </if> href="{:U('Index/index')}">
+        <p><i class="iconfont icon-size icon-store_icon" ></i></p>
+        <span>商城</span>
+    </a>
+    <a <if condition="CONTROLLER_NAME eq 'Goods'"> class="on" </if> href="{:U('Gold/index')}">
+        <p><i class="iconfont icon-size icon-jiaoyiliangzongpaixing"></i></p>
+        <span>交易</span>
+    </a>
+     <a <if condition="CONTROLLER_NAME eq 'Gold'"> class="on" </if> href="{:U('Gold/wakuang')}">
+        <p><i class="iconfont icon-size icon-groupsets_"></i></p>
+        <span>新淘链</span>
+    </a>
+    <!-- <a <if condition="CONTROLLER_NAME eq 'Cart'"> class="on" </if> href="{:U('Cart/index')}">
+        <p><i class="iconfont icon-size icon-gouwuche"></i></p>
+        <span>购物车</span>
+    </a> -->
+    <a <if condition="CONTROLLER_NAME eq 'User'"> class="on" </if> href="{:U('User/index')}">
+        <p><i class="iconfont icon-size icon-wo"></i></p>
+        <span>我的</span>
+    </a>
+</div>

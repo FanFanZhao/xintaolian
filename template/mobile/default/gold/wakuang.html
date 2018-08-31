@@ -1,0 +1,267 @@
+<include file="public/header" title="我的钱包" body="g4"/>
+<include file="public/header_nav" title="我的钱包"  href="javascript:history.go(-1);"/>
+<link href="__STATIC__/circle/css/style-rj.css" rel="stylesheet" type="text/css" />
+<link href="__STATIC__/circle/css/style.css" rel="stylesheet" type="text/css" />
+<style>
+    .classreturn{
+        border-bottom: none;
+        /* background: #2d5379 */
+        background: #f1ad46;
+    }
+    .profit{
+        margin-top: 0;
+        background-color: #505050;
+    }
+
+    .wk_info{
+        width: 100%;
+        
+    }
+    .wk_info>div{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: .8rem .5rem;
+    }
+    .wk_info div span{
+        color: #f1ad46;
+        background: linear-gradient(to right, #f1ad46, #48300d);
+        font-size: .7rem;
+        font-weight:900;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+    .floor-floor .item{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        font-size: .56rem;
+    }
+    .floor-floor .item i{
+        vertical-align: middle;
+    }
+    .floor-floor .item li{
+        width: 50%;
+        border-bottom:none;
+        margin-bottom: .4rem;
+    }
+    .floor-floor .item a{
+        padding: .5rem .8rem;
+        display: inline-block;
+        background-color: #505050;
+        border-radius: .2rem;
+    }
+    .floor-floor .item li:nth-child(even) {
+        text-align: right;
+    }
+</style>
+<div>
+    <div class="profit">
+        <div>
+            <a href="{:U('Mobile/Dynamic/index')}">
+                <p>今日收益</p>
+                <p>{$yestday}</p>
+            </a>
+        </div>
+        <div>
+            <a href="javascript:;" class="showDate">
+                <p>累计收益</p>
+                <p>{$user['jin_total']}</p>
+                <span id="time" ></span>
+            </a>
+        </div>
+    </div>
+</div>
+<div style="position: fixed;bottom: 2rem;" class="wk_info">
+    <div><span> <i class="iconfont icon-jifen"></i> 我的算力</span> <span>{$user['consume_cp']}G</span></div>
+    <div><span><i class="iconfont icon-jifen"></i> 全网算力</span> <span>{$all_consume_cp}G</span></div>
+    <div><span><i class="iconfont icon-jifen"></i> 我的新淘链</span> <span>{$user['jin_num']}</span></div>
+    <div class="floor-floor"style="padding-bottom:2rem;">
+        <ul class="item">
+           
+            <li>
+                    <a href="{:U('Mobile/Gold/transfer')}">
+                        
+                        
+                        <span>我要转账</span>
+                        
+                    </a>
+            </li>
+            <li>
+                <a href="{:U('Mobile/Gold/transfer_list')}">
+                
+                    
+                    <span>转账记录</span>
+               
+               
+                </a>
+            </li>
+            <li>
+                <a href="{:U('Mobile/Gold/wallet_address')}">
+                    
+                       
+                        <span>钱包地址</span>
+                   
+                   
+                </a>
+            </li>
+          
+            <li><a href="{:U('Mobile/Gold/consume_list')}">
+                
+                    
+                    <span>算力明细</span>
+                
+               
+            </a></li>
+            
+        </ul>
+    </div>
+</div>
+<include file="public/footer"/>
+<script>
+    $(function () {
+
+       $.ajax({
+        url:"/Mobile/Goldchain/calculate",
+        type:"GET",
+        dataType:"json",
+        success:function(data){
+            console.log(data)
+            if(data==1){
+                $("#btn-go").css("display","none");
+                // $(".box-a").css("display","block");
+            }else{
+                $("#btn-go").css("display","block");
+            }
+        }
+    })
+
+$("#btn-go").click(function(){
+    $.ajax({
+        url:"/Mobile/Goldchain/calculate",
+        type:"GET",
+        data:{
+          update:1
+        },
+        dataType:"json",
+        success:function(data){
+            console.log(data)
+            if(data==1){
+                $("#btn-go").css("display","none");
+                $(".box-a").css("display","block");
+            }else{
+                $("#btn-go").css("display","block");
+            }
+        }
+    })
+})
+    })
+ 
+</script>
+
+
+<script>
+    var $$ = {};
+
+$$.Particle = function( opt ) {
+  this.radius = 7;
+  this.x = opt.x;
+  this.y = opt.y;
+  this.angle = opt.angle;
+  this.speed = opt.speed;
+  this.accel = opt.accel;
+  this.decay = 0.01;
+  this.life = 1;
+};
+
+$$.Particle.prototype.step = function( i ) {
+  this.speed += this.accel;
+  this.x += Math.cos( this.angle ) * this.speed;
+  this.y += Math.sin( this.angle ) * this.speed;
+  this.angle += $$.PI / 64;
+  this.accel *= 1.01;
+  this.life -= this.decay;
+  
+  if( this.life <= 0 ) {
+    $$.particles.splice( i, 1 );
+  }
+};
+
+$$.Particle.prototype.draw = function( i ) {
+  $$.ctx.fillStyle = $$.ctx.strokeStyle = 'hsla(' + ( $$.tick + ( this.life * 120 ) ) + ', 100%, 60%, ' + this.life + ')';
+  $$.ctx.beginPath();
+  if( $$.particles[ i - 1 ] ) {
+    $$.ctx.moveTo( this.x, this.y );
+    $$.ctx.lineTo( $$.particles[ i - 1 ].x, $$.particles[ i - 1 ].y );
+  }
+  $$.ctx.stroke();
+  
+  $$.ctx.beginPath();
+  $$.ctx.arc( this.x, this.y, Math.max( 0.001, this.life * this.radius ), 0, $$.TWO_PI );
+  $$.ctx.fill();
+  
+  var size = Math.random() * 1.25;
+  $$.ctx.fillRect( ~~( this.x + ( ( Math.random() - 0.5 ) * 35 ) * this.life ), ~~( this.y + ( ( Math.random() - 0.5 ) * 35 ) * this.life ), size, size );
+}
+
+$$.step = function() {
+  $$.particles.push( new $$.Particle({
+    x: $$.width / 2 + Math.cos( $$.tick / 20 ) * $$.min / 2,
+    y: $$.height / 2 + Math.sin( $$.tick / 20 ) * $$.min / 2,
+    angle: $$.globalRotation + $$.globalAngle,
+    speed: 0,
+    accel: 0.01
+  }));
+  
+  $$.particles.forEach( function( elem, index ) {
+    elem.step( index );
+  });
+  
+  $$.globalRotation += $$.PI / 6;
+  $$.globalAngle += $$.PI / 6;
+};
+
+$$.draw = function() {
+  $$.ctx.clearRect( 0, 0, $$.width, $$.height );
+  
+  $$.particles.forEach( function( elem, index ) {
+    elem.draw( index );
+  });
+};
+
+$$.init = function() {
+  $$.canvas = document.createElement( 'canvas' );
+  $$.ctx = $$.canvas.getContext( '2d' );
+  $$.width = window.innerWidth;
+  $$.height = window.innerHeight;
+  $$.canvas.width = $$.width * window.devicePixelRatio;
+  $$.canvas.height = $$.height * window.devicePixelRatio;
+  $$.canvas.style.width = $$.width + 'px';
+  $$.canvas.style.height = $$.height + 'px';
+  $$.canvas.style.marginTop='-30%';
+  $$.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  $$.min = $$.width * 0.5;
+  $$.particles = [];
+  $$.globalAngle = 0;
+  $$.globalRotation = 0;
+  $$.tick = 0;
+  $$.PI = Math.PI;
+  $$.TWO_PI = $$.PI * 2;
+  $$.ctx.globalCompositeOperation = 'lighter';
+  document.body.appendChild( $$.canvas );
+  $$.loop();
+};
+
+$$.loop = function() {
+  requestAnimationFrame( $$.loop );
+  $$.step();
+  $$.draw();
+  $$.tick++;
+};
+
+$$.init();
+</script>
+</body>
+</html>

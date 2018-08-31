@@ -1,0 +1,501 @@
+<include file="public/header" title="话费充值" />
+<include file="public/header_nav" title="话费充值" href="javascript:history.go(-1);" />
+<style>
+    
+    .laybtn .disabled {
+        background-color: #c3c3c3;
+        color: #f3f3f3;
+        cursor: not-allowed;
+    }
+    .layui-m-layerchild {
+        width: auto !important;
+    }
+
+    div.layui-m-layercont {
+        padding: 1rem;
+        text-align: left;
+        line-height: .9rem;
+    }
+
+    .layui-m-layerbtn {
+        height: auto;
+        font-size: 0.2rem;
+    }
+
+    .layui-m-layerbtn span {
+        line-height: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .oil .category span.disabled {
+        border: none;
+        background: #383838;
+        color: #525050;
+        cursor: not-allowed;
+    }
+
+    .oil {
+        font-size: .6rem;
+        padding: 1rem .5rem;
+        background-color: #333;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+
+    .mgt {
+        margin-top: .8rem;
+    }
+
+    .oil .money,
+    .oil .no {
+        width: 100%;
+        border-radius: .2rem;
+        border: 1px solid #f1ad46;
+        color: #666;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        text-indent: 1em;
+        background: transparent;
+    }
+
+    .oil .money.active,
+    .oil .no.active {
+        background-color: #fff;
+
+    }
+
+    .oil .category {
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    .oil .category div {
+        width: 30%;
+        border: 1px solid #f1ad46;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        color: #f1ad46;
+        text-align: center;
+        border-radius: .3rem;
+    }
+
+    .oil .category span {
+        width: 30%;
+        border: 1px solid #f1ad46;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        /* color:#f1ad46; */
+        text-align: center;
+        border-radius: .3rem;
+        cursor: default;
+        color: #E5E0E0;
+        text-decoration: none;
+    }
+
+    .oil .category div.active {
+        color: #333;
+        background-color: #f1ad46;
+    }
+
+    .oil .sel {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .oil .sel .item {
+        width: 30%;
+        color: #f1ad46;
+        border: 1px solid #f1ad46;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        margin-bottom: .3rem;
+        background-color: transparent;
+        border-radius: .3rem;
+        text-align: center;
+    }
+
+    .oil .sel .item.active {
+        background-color: #f1ad46;
+        color: #333;
+    }
+
+    .oil .btn {
+        width: 100%;
+        border-radius: .3rem;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        color: #333;
+        background-color: #f1ad46;
+        margin-top: 1rem;
+    }
+
+    .oil .tip {
+        font-size: .56rem;
+        color: #e4e4e4;
+        margin-top: .6rem;
+    }
+
+    .oil .pwd_box {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #484848;
+        position: fixed;
+        border-radius: .3rem;
+        display: none;
+    }
+
+    .oil .pwd {
+        color: #333;
+        font-size: .6rem;
+        position: absolute;
+        width: 80%;
+        top: 30%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 1px solid #f1ad46;
+        background-color: #fff;
+        text-align: center;
+        height: 7rem;
+        border-top-left-radius: .3rem;
+        border-top-right-radius: .3rem;
+
+    }
+
+    .oil .pwd p {
+        font-size: .66rem;
+        background-color: #f1ad46;
+        padding: .5rem;
+        text-align: center;
+        color: #fff;
+        border-top-left-radius: .3rem;
+        border-top-right-radius: .3rem;
+    }
+
+    .oil .pwd input.passowrd {
+        border: 1px solid #ccc;
+        width: 80%;
+        padding: .4rem;
+        border-radius: .3rem;
+        background-color: #eee;
+        margin-top: 1rem;
+        outline: none;
+    }
+
+    .oil .pwd .laybtn {
+        width: 100%;
+        display: flex;
+        margin-top: 1rem;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    .oil .pwd .laybtn input {
+        width: 50%;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        outline: none;
+        border: none;
+    }
+
+    .oil .pwd .laybtn input.active {
+        background-color: #f1ad46;
+
+    }
+    .oil a.record{
+        color:#f1ad46;
+        position: absolute;
+        right: .5rem;
+        top: .8rem;
+    }
+</style>
+<div class="oil">
+    <a class="record" href="{:url('mobile/Gold/tel_charge_record')}">充值记录</a>
+    <form action="" id="addForm">
+        <div><p style="color:#fff;">请选择运营商</p></div>
+        <div class="category mgt">
+            <if condition='$unicom_recharge eq 1'>
+                <div class="">中国移动
+                    <input type="hidden" value="0">
+                </div>
+                <else>
+                    <span class="disabled">中国移动</span>
+            </if>
+
+            <if condition='$mobile_recharge eq 1'>
+                <div>中国联通
+                    <input type="hidden" value="1">
+                </div>
+                <else>
+                    <span class="disabled">中国联通</span>
+
+            </if>
+            <if condition='$telecommunication_recharge eq 1'>
+                <div>中国电信
+                    <input type="hidden" value="2">
+                </div>
+                <else>
+                    <span class="disabled">中国电信</span>
+            </if>
+            <input type="hidden" class="choice" name="choice" value="">
+        </div>
+        <div style="margin-top:1rem;">
+            <input type="tel" name="mobile" class="no active" placeholder="请输入手机号">
+        </div>
+        <div style="margin-top:1rem;"><p style="color:#fff;">请选择面额</p></div>
+        <div class="sel mgt">
+            <span class="item">50.00</span>
+            <span class="item">100.00</span>
+            <span class="item">200.00</span>
+        </div>
+        <input type="hidden" name="money" class="money mgt active" placeholder="请输入充值金额" value='' readonly>
+        <p class="tip">需要扣除手续费:
+            <span class="shouxu">{$shouxu}</span>
+        </p>
+
+        <input type="submit" value="确认充值" class="btn">
+    </form>
+    <div class="pwd_box">
+        <div class="pwd">
+            <p>请输入密码</p>
+            <input type="password" name="pwd" id="pwd" class="passowrd" placeholder="请输入密码">
+            <div class="laybtn">
+                <input type="button" value="取消" class="cancel">
+                <input type="button" value="确认" class="ok active">
+            </div>
+        </div>
+    </div>
+</div>
+<div style="display: none;">
+        <div class="trade_info_confirm">
+            <p>本次交易:
+                <span class="usedChain">0.00</span>
+            </p>
+            <!-- <p>今日持有:
+                <span class="todayInitChain">0.00</span>
+            </p>
+            <p>今日使用:
+                <span class="todayUsedChain">0.00</span>
+            </p>
+            <p>交易所占比例:
+                <span class="todayUsedRatio">0.00</span>%</p> -->
+            <p>需贡献比例:
+                <span class="creent_fee_ratio"></span>%</p>
+            <p>需贡献值:
+                <span class="current_poundage">0.00</span>
+            </p>
+        </div>
+</div>
+<include file="public/jintai_footer" />
+
+<script>
+    $('.no').focus(function () {
+        $(this).addClass('active');
+    })
+    $('.money').focus(function () {
+        $(this).addClass('active');
+    })
+    $('.category').on('click', 'div', function () {
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active');
+        $('.choice').val($(this).find('input').val());
+    })
+    $('.sel').on('click', '.item', function () {
+        $('.shouxu').html('计算中...');
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active');
+        $('.money').val($(this).html());
+        var money = $.trim($('.money').val());
+        $.ajax({
+            type: "POST",
+            url: "/index.php?m=Mobile&c=Gold&a=transaction_fee",//+tab,
+            data: { money: money },
+            dataType: 'json',
+            success: function (data) {
+                $('.shouxu').html(data);
+
+            },
+
+        });
+    })
+    $('.btn').on('click',function (e) {
+        e.preventDefault();
+        var no = $.trim($('.no').val());
+        var money = $.trim($('.money').val());
+        var choice = $.trim($('.choice').val());
+        if (choice == '' || choice == -1) {
+            layer.open({
+                content: '请选择运营商!',
+                time: 2
+                ,skin: 'msg'
+            })
+            return false;
+        }
+        if (!no) {
+            layer.open({
+                content: '手机号不能为空，请输入手机号!',
+                time: 2
+                ,skin: 'msg'
+            })
+            return false;
+        }
+        if (!checkMobile(no)) {
+            layer.open({
+                content: '手机号格式错误，请重新输入!',
+                time: 2
+                ,skin: 'msg'
+            })
+            return false;
+        }
+        if (!money) {
+            layer.open({
+                content: '请选择充值金额！',
+                time: 2
+                ,skin: 'msg'
+            })
+            return false;
+        }
+        var loadIndex = layer.open({type: 2, content: '请稍等'});
+        $.ajax({
+            url: '/mobile/Gold/transaction_information'
+            ,type: 'GET'
+            ,data: {money: money,type:1}
+            ,success: function (res) {
+                layer.closeAll();
+                if (res.code == 1) {
+                    $('.trade_info_confirm .usedChain').html(res.data.usedChain);
+                    $('.trade_info_confirm .todayInitChain').html(res.data.todayInitChain);
+                    $('.trade_info_confirm .todayUsedChain').html(res.data.todayUsedChain);
+                    $('.trade_info_confirm .todayUsedRatio').html(res.data.todayUsedRatio);
+                    $('.trade_info_confirm .current_poundage').html(res.data.poundage);
+                    $('.trade_info_confirm .creent_fee_ratio').html(res.data.feeRatio);
+                } else {
+                    layer.open({content:res.msg, skin: 'msg'});
+                    return false;
+                }
+                var protocolIndex = layer.open({
+                    title: [
+                        '操作确认',
+                        'background-color: #f4a32a; color: #fff; font-size: .7rem; height: 1.6rem; line-height: 1.6rem;'
+                    ]
+                    ,content: $('.trade_info_confirm').html()
+                    ,btn: ['同意', '取消']
+                    ,yes: function () {
+                        layer.close(protocolIndex);
+                        $('.pwd_box').show();
+                        $('.passowrd').focus();
+                        
+                    }
+                });
+            }
+        });
+        return false;
+        //    if( !check(money)){
+        //        $('.money').val('');
+        //        return;
+        //    }
+        // $('.pwd_box').show();
+
+        // return;
+    })
+    $('.ok').on('click',function () {
+        var that = this;
+        if (!$(that).hasClass('active')) {
+            /*
+            layer.open({
+                content: '请不要重复点击'
+                ,skin: 'msg'
+            });
+            */
+            return false;
+        }
+        $(that).removeClass('active').addClass('disabled');
+        var pwd = $.trim($('.passowrd').val());
+        $('.passowrd').val('');
+        if (!pwd) {
+            layer.open({
+                content: '密码不能为空!',
+                time: 2
+                ,skin: 'msg'
+            })
+            $(that).removeClass('disabled').addClass('active');
+            return;
+        } else {
+            var mobile = $.trim($('.no').val());
+            // alert(phone);
+            var money = $.trim($('.money').val());
+            var choice = $.trim($('.choice').val());
+            $.ajax({
+                type: "POST",
+                url: "",//+tab,
+                data: {
+                    pwd: pwd,
+                    mobile: mobile,
+                    money: money,
+                    choice: choice
+                },
+                dataType: 'json',
+                success: function (data) {
+                    $('.pwd_box').hide();
+                    $(that).removeClass('disabled').addClass('active');
+                    if (data.status == 1) {
+                        layer.open({
+                            content: data.msg
+                            ,skin: 'msg'
+                            , time: 3
+                            , end: function () {
+                                window.location.href = '/index.php?m=Mobile&c=Gold&a=tel_charge';
+                            }
+                        });
+                    } else {
+                        $('.pwd_box').hide();
+                        layer.open({
+                            content: data.msg
+                            ,skin: 'msg'
+                            , time: 3
+                            , end: function () {
+                                $('.pwd_box').hide();
+                            }
+                        });
+                    }
+                },
+                error: function () {
+                    $('.pwd_box').hide();
+                    layer.open({
+                        content: '网络异常'
+                       , skin: 'msg'
+                        , time: 3
+                        , end: function () {
+                            $('.pwd_box').hide();
+                        }
+                    });
+                    }
+            });
+        }
+    })
+    $('.cancel').click(function () {
+        $('.pwd_box').hide();
+    })
+    //判断是否是小数或带有小数点的数字
+    function check(value) {
+        var re = /^\d+(?=\.{0,1}\d+$|$)/
+        if (value != "") {
+            console.log(123)
+
+            if (!re.test(value)) {
+                layer.open({
+                    content: '金额格式不正确，请输入数字',
+                    time: 2
+                })
+                return false;
+            } else {
+                return true;
+            }
+        }
+    } 
+</script>
