@@ -14,6 +14,10 @@ class Goods extends MobileBase
 {
     public function index()
     {
+        $buyList = action('Goldchain/buyList');
+        $soldList = action('Goldchain/soldList');
+        $this->assign('soldList', $soldList);
+        $this->assign('buyList', $buyList);
         return $this->fetch();
     }
 

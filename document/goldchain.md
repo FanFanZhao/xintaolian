@@ -14,7 +14,7 @@ password|是|支付密码|文本
     "data": null
 }
 ```
-### **挂买新淘链**
+### **挂买亚富链**
 ### 请求URL:  
 */Mobile/goldchain/buy/* 
 ### 请求方式:POST 
@@ -31,7 +31,7 @@ price|是|购买单价|float
     "data" : null,
 }
 ```
-### **挂卖新淘链**
+### **挂卖亚富链**
 ### 请求URL:  
 */Mobile/goldchain/sold/* 
 ### 请求方式:POST 
@@ -64,7 +64,7 @@ trade_id|是|交易id|整数
     "data" : null,
 }
 ```
-### **从指定交易买入新淘链**
+### **从指定交易买入亚富链**
 ### 请求URL:  
 */Mobile/goldchain/buyTrade/* 
 ### 请求方式:POST 
@@ -80,7 +80,7 @@ trade_id|是|交易id|整数
     "data" : $trade, //成功返回订单信息,失败返回null
 }
 ```
-### **从指定交易卖出新淘链**
+### **从指定交易卖出亚富链**
 ### 请求URL:  
 */Mobile/goldchain/soldTrade/* 
 ### 请求方式:POST 
@@ -96,7 +96,7 @@ trade_id|是|交易id|整数
     "data": null
 }
 ```
-### **获取新淘链买入列表(交易大厅)**
+### **获取亚富链买入列表(交易大厅)**
 ### 请求URL:  
 */Mobile/goldchain/buyList/* 
 ### 请求方式:GET 
@@ -142,7 +142,7 @@ endTime|否|结束时间|日期格式字符串
     }
 ]
 ```
-### **获取新淘链卖出列表(交易大厅)**
+### **获取亚富链卖出列表(交易大厅)**
 ### 请求URL:  
 */Mobile/goldchain/soldList/*
 ### 请求方式:GET  

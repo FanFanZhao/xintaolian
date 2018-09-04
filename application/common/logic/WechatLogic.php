@@ -104,7 +104,7 @@ class WechatLogic
                 return ['status' => -1, 'msg' => "保存数据出错"];
             }
         }
-        $wechatObj->sendMsg($openid, "欢迎来到新淘链商城! 商城入口：".$_SERVER['HTTP_HOST'].'/mobile');
+        $wechatObj->sendMsg($openid, "欢迎来到亚富链商城! 商城入口：".$_SERVER['HTTP_HOST'].'/mobile');
         exit;
     }
     

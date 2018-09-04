@@ -1,7 +1,7 @@
 <?php
 /**
- * 新淘链API接口
- * Author: 新淘链
+ * 亚富链API接口
+ * Author: 亚富链
  */
 namespace app\mobile\controller;
 
@@ -391,7 +391,7 @@ class Goldchain extends MobileBase
     }
 
     /**
-     * 获得新淘链单价（其实就是开盘价）
+     * 获得亚富链单价（其实就是开盘价）
      */
     public function getPrice(Request $request)
     {

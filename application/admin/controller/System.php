@@ -1,16 +1,16 @@
 <?php
 
 /**
- * 新淘链商城
+ * 亚富链商城
  * ============================================================================
- * 版权所有 2015-2027 新淘链，并保留所有权利。
+ * 版权所有 2015-2027 亚富链，并保留所有权利。
  * 网站地址: 
  * ----------------------------------------------------------------------------
  * 这是一个商业软件，您必须购买授权才能使用.
  * 不允许对程序代码以任何形式任何目的的再发布。
  * 请支持正版, 以免引起不必要的法律纠纷.
  * ============================================================================
- * Author: 新淘链
+ * Author: 亚富链
  * Date: 2015-10-09
  */
 
@@ -46,8 +46,8 @@ class System extends Base
             //'distribut' => '分销设置',
             'push' => '推送设置',
             'oss' => '对象存储',
-            'prop' => '新淘链比例',
-            'goldchain_trade' => '新淘链交易',
+            'prop' => '亚富链比例',
+            'goldchain_trade' => '亚富链交易',
         ];
         $this->assign('group_list', $group_list);
         $inc_type = I('get.inc_type', 'shop_info');
@@ -110,7 +110,7 @@ class System extends Base
         $this->success("操作成功", U('System/index', array('inc_type' => $inc_type)));
     }
     /**
-     * 新淘链配置参数
+     * 亚富链配置参数
      * */
     public function prop()
     {
@@ -125,7 +125,7 @@ class System extends Base
     }
 
     /**
-     * 新淘链交易参数
+     * 亚富链交易参数
      */
     public function goldchain_trade(Request $request)
     {

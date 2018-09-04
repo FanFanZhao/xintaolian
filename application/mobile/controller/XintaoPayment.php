@@ -51,13 +51,13 @@ class XintaoPayment extends MobileBase
         !$order && $this->error('未获取到有效订单');
         $rechargePayMoney = getUserRechargePayMoney($this->user_id);
         if ($rechargePayMoney < 50) {
-            $this->error('您的实际充值金额小于50,不能使用新淘链进行支付');
+            $this->error('您的实际充值金额小于50,不能使用亚富链进行支付');
         }
         $openPrice = action('common/Goldchain/getOpenPrice', array(), 'logic', true);
         $needUseQty = $this->getNeedUseChainQty($order->order_amount);
 
         if (bccomp($this->user['jin_num'], $needUseQty, $decimalScale) < 0) {
-            $this->error('您的可用新淘链余额不足,请重新选择支付方式', '/Mobile/Cart/cart4/order_id/'. $order_id);
+            $this->error('您的可用亚富链余额不足,请重新选择支付方式', '/Mobile/Cart/cart4/order_id/'. $order_id);
         }
 
         $this->assign('max_use', $needUseQty);
@@ -118,7 +118,7 @@ class XintaoPayment extends MobileBase
             if ($rechargePayMoney < 50) {
                 return json([
                     'status' => 0,
-                    'msg' => '您的实际充值金额小于50,不能使用新淘链进行支付',
+                    'msg' => '您的实际充值金额小于50,不能使用亚富链进行支付',
                     'data' => null,
                 ]);
             }
@@ -154,7 +154,7 @@ class XintaoPayment extends MobileBase
             if (bccomp($this->user['jin_num'], $needUseQty, $decimalScale) < 0) {
                 return json([
                     'code' => 0,
-                    'msg' =>'您的可用新淘链余额不足',
+                    'msg' =>'您的可用亚富链余额不足',
                     'data' => null,
                 ]);
             }
@@ -166,7 +166,7 @@ class XintaoPayment extends MobileBase
                 Db::rollback();
                 return json([
                     'code' => 1,
-                    'msg' => '扣除新淘链失败',
+                    'msg' => '扣除亚富链失败',
                     'data' => null,
                 ]);
             }
@@ -177,7 +177,7 @@ class XintaoPayment extends MobileBase
 
             $order->pay_status = 1;
             $order->pay_code = 'xintaoPay';
-            $order->pay_name = '新淘链支付';
+            $order->pay_name = '亚富链支付';
             $order->pay_detail = serialize($pay_info);
             $order->pay_time = time();
             $res = $order->save();

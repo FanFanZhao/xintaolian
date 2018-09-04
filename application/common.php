@@ -615,7 +615,7 @@ function tpCache($config_key, $data = array())
  * @param string $order_sn 订单sn
  * @param float $frozen_money 冻结资金
  * @param float $withdraw_money 提现币
- * @param float $jin_num        新淘链
+ * @param float $jin_num        亚富链
  * @param int $dedication_money 奉献值
  * @param float $consume_cp 算力
  * @return bool
@@ -703,7 +703,7 @@ function storeAccountLog($store_id, $store_money = 0, $pending_money, $desc = ''
     }
 }
 /**
- * 新淘链转账记录
+ * 亚富链转账记录
  * @param type $user_id 转账人的id
  * @param type $type    转账类型
  * @param type $desc    备注
@@ -713,7 +713,7 @@ function storeAccountLog($store_id, $store_money = 0, $pending_money, $desc = ''
  */
 function jin_transfer_log($user_id, $money = 0, $desc = '', $uid = 0, $type = 0, $status = 0)
 {
-    $jin_fee = tpCache('basic.jin_fee') / 100;//新淘链转账手续费比例
+    $jin_fee = tpCache('basic.jin_fee') / 100;//亚富链转账手续费比例
     if ($jin_fee <= 0) {
         $shouxu = 0;
     } else {

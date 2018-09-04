@@ -2,11 +2,11 @@
 
 /**
 
- * 新淘链商城 支付宝插件
+ * 亚富链商城 支付宝插件
 
  * ============================================================================
 
- * 版权所有 2015-2027 新淘链，并保留所有权利。
+ * 版权所有 2015-2027 亚富链，并保留所有权利。
 
  * 网站地址: 
 
@@ -20,7 +20,7 @@
 
  * ============================================================================
 
- * Author: 新淘链
+ * Author: 亚富链
 
  * Date: 2015-09-09
 
@@ -130,7 +130,7 @@ class tenpay extends Model
 
             $reqHandler->setParameter("return_url",  SITE_URL.U('Payment/returnUrl',array('pay_code'=>'tenpay')));//页面跳转同步通知页面路径            
 
-            $reqHandler->setParameter("body", "新淘链商城");
+            $reqHandler->setParameter("body", "亚富链商城");
 
             $reqHandler->setParameter("bank_type", "DEFAULT");  	  //银行类型，默认为财付通
 

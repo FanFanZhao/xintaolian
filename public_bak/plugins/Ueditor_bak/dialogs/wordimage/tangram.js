@@ -1243,7 +1243,7 @@ baidu.sio.log = function(url) {
  * Copyright 2009 Baidu Inc. All rights reserved.
  * 
  * path: baidu/json.js
- * Author: 新淘链
+ * Author: 亚富链
  * version: 1.1.0
  * date: 2009/12/02
  */
@@ -1259,7 +1259,7 @@ baidu.json = baidu.json || {};
  * Copyright 2009 Baidu Inc. All rights reserved.
  * 
  * path: baidu/json/parse.js
- * Author: 新淘链
+ * Author: 亚富链
  * version: 1.2
  * date: 2009/11/23
  */
@@ -1288,7 +1288,7 @@ baidu.json.parse = function (data) {
  * Copyright 2009 Baidu Inc. All rights reserved.
  * 
  * path: baidu/json/decode.js
- * Author: 新淘链
+ * Author: 亚富链
  * version: 1.3.4
  * date: 2010/12/23
  */
@@ -1312,7 +1312,7 @@ baidu.json.decode = baidu.json.parse;
  * Copyright 2009 Baidu Inc. All rights reserved.
  * 
  * path: baidu/json/stringify.js
- * Author: 新淘链
+ * Author: 亚富链
  * version: 1.1.0
  * date: 2010/01/11
  */
@@ -1474,7 +1474,7 @@ baidu.json.stringify = (function () {
  * Copyright 2009 Baidu Inc. All rights reserved.
  * 
  * path: baidu/json/encode.js
- * Author: 新淘链
+ * Author: 亚富链
  * version: 1.3.4
  * date: 2010/12/23
  */

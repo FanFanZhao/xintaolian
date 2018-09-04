@@ -75,7 +75,7 @@ class Lottery extends Controller
                 $user_id,
                 0,
                 0,
-                '抽奖活动,喜中' . $number . '个新淘链',
+                '抽奖活动,喜中' . $number . '个亚富链',
                 0,
                 $lotteryResult->id,
                 '',

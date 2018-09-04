@@ -286,12 +286,12 @@ class RecognizeLogic
                 'data' => null,
             ];
         }
-        //新淘链到账
+        //亚富链到账
         $result = accountLog(
             $user_id,
             0,
             0,
-            '认筹交易完成，新淘链到账',
+            '认筹交易完成，亚富链到账',
             0,
             $recognizeTrade->id,
             $recognizeTrade->trade_no,
@@ -303,7 +303,7 @@ class RecognizeLogic
             Db::rollback();
             return [
                 'code' => 0,
-                'msg' => '交易失败：新淘链到账失败',
+                'msg' => '交易失败：亚富链到账失败',
                 'data' => null,
             ];
         }
@@ -324,7 +324,7 @@ class RecognizeLogic
       
         return [
             'code' => 1,
-            'msg' => '交易成功，新淘链已成功到账',
+            'msg' => '交易成功，亚富链已成功到账',
             'data' => null,
         ];
     }

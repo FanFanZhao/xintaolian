@@ -16,7 +16,7 @@ class Dynamic extends MobileBase
     public $user_id = 0;
     public $user = array();
     /*
-     * 每日新淘链记录
+     * 每日亚富链记录
      */
     public function index()
     {

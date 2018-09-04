@@ -61,7 +61,7 @@ function findProportion()
 }
 
 /**
- * 根据算力计算应返多少新淘链
+ * 根据算力计算应返多少亚富链
  * @param float $consume_cp 算力
  * @param array $proportion 比例配置
  * @return integer 返回数量
@@ -87,21 +87,21 @@ function calcRebateGoldchain($consume_cp, $proportion, $keyong_jin = null)
 /**
  * 静态返利
  * @param array $user 用户
- * @param float $rebateGoldchain 应返新淘链
+ * @param float $rebateGoldchain 应返亚富链
  */
 function staticRebate($user, $rebateGoldchain, $award_time)
 {
-    $goldchainBalance = $user["jin_num"] + $rebateGoldchain; //预计新淘链余额
-    $jin_total = $user["jin_total"] + $rebateGoldchain; //预计累计新淘链
-    $factGoldchain = $rebateGoldchain; //实际返新淘链
+    $goldchainBalance = $user["jin_num"] + $rebateGoldchain; //预计亚富链余额
+    $jin_total = $user["jin_total"] + $rebateGoldchain; //预计累计亚富链
+    $factGoldchain = $rebateGoldchain; //实际返亚富链
     if ($jin_total > $user["user_performance"]) {
-        //即将获得的新淘链大于投资本金
+        //即将获得的亚富链大于投资本金
         $staticCapping = $user["user_performance"] * $proportion["static_capping"];//上限数量
         if ($jin_total >= $staticCapping) {
-            //即将获得的新淘链大于封顶值
-            $shengyus = $rebateGoldchain * $proportion["static_deduct"] / 100;//应当扣除的额外比例新淘链
-            $shengyu = $rebateGoldchain - $shengyus;//应当获得的新淘链
-            $suoyou = $user["jin_total"] + $shengyu;//获得后的新淘链数量
+            //即将获得的亚富链大于封顶值
+            $shengyus = $rebateGoldchain * $proportion["static_deduct"] / 100;//应当扣除的额外比例亚富链
+            $shengyu = $rebateGoldchain - $shengyus;//应当获得的亚富链
+            $suoyou = $user["jin_total"] + $shengyu;//获得后的亚富链数量
             if ($suoyou >= $staticCapping) {//是否已经超出封顶
                 $xiaosheng = $staticCapping - $user["jin_total"];//获得超出的数量
                 if ($xiaosheng > 0) {//数量大于零说明还有未超出封顶
@@ -120,13 +120,13 @@ function staticRebate($user, $rebateGoldchain, $award_time)
             }
         } else {
             if ($user["jin_total"] >= $user["user_performance"]) {
-                $kexcess = $rebateGoldchain * $proportion["static_deduct"] / 100;//超出的新淘链扣除比例
+                $kexcess = $rebateGoldchain * $proportion["static_deduct"] / 100;//超出的亚富链扣除比例
                 $factGoldchain = $rebateGoldchain - $kexcess;
                 $goldchainBalance = $user["jin_num"] + $factGoldchain;
                 $jin_total = $user["jin_total"] + $factGoldchain;
             } else {
                 $excess = $jin_total - $user["user_performance"];
-                $kexcess = $excess * $proportion["static_deduct"] / 100;//超出的新淘链扣除比例
+                $kexcess = $excess * $proportion["static_deduct"] / 100;//超出的亚富链扣除比例
                 $factGoldchain = $rebateGoldchain - $kexcess;
                 $goldchainBalance = $user["jin_num"] + $factGoldchain;
                 $jin_total = $user["jin_total"] + $factGoldchain;

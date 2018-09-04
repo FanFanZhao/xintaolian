@@ -44,7 +44,7 @@ if ($arr) {
     foreach ($arr as $k => $v) {
         reward_log('当前用户信息:' . var_export($v, true));
         $jintai = 0; //本次应返静态金额
-        if ($v["consume_cp"] >= $proportion["one_min_consume"] && $proportion["one_consume"] >= $v["consume_cp"]) {//应该奖励的新淘链值
+        if ($v["consume_cp"] >= $proportion["one_min_consume"] && $proportion["one_consume"] >= $v["consume_cp"]) {//应该奖励的亚富链值
             $jintai = $v["consume_cp"] * $proportion["one_percent"] / 100;
         } elseif ($v["consume_cp"] >= $proportion["two_min_consume"] && $proportion["two_consume"] >= $v["consume_cp"]) {
             $jintai = $v["consume_cp"] * $proportion["two_percent"] / 100;
@@ -61,19 +61,19 @@ if ($arr) {
         $userStaticExcessStandard = $static_minimum_guarantee + $v["user_performance"] + $v["recognize_num"]; //静态最低保底+用户个人消费额+认筹数量
         $userStaticBase = $static_minimum_guarantee + $v["recognize_num"];
         if ($jin_total > $staticExcessStandard) {
-            //即将获得的新淘链大于投资本金和保底
+            //即将获得的亚富链大于投资本金和保底
             reward_log(
                 '用户id:' . $v['user_id']
-                .'即将获得的新淘链大于投资本金jin_total:' . $jin_total
+                .'即将获得的亚富链大于投资本金jin_total:' . $jin_total
                 . ', user_performance:' . $v['user_performance']
                 . ', recognize_num:' . $v['recognize_num']
             );
             $totals = $userStaticBase + $v["user_performance"] * $proportion["static_capping"];//上限数量
-            if ($jin_total >= $totals) {//即将获得的新淘链大于封顶值
-                $shengyus = $jintai * $proportion["static_deduct"] / 100;//应当扣除的额外比例新淘链
-                $shengyu = $jintai - $shengyus;//应当获得的新淘链
+            if ($jin_total >= $totals) {//即将获得的亚富链大于封顶值
+                $shengyus = $jintai * $proportion["static_deduct"] / 100;//应当扣除的额外比例亚富链
+                $shengyu = $jintai - $shengyus;//应当获得的亚富链
                 $shengyu < 0 && $shengyu = 0;
-                $suoyou = $v["jin_total"] + $shengyu;//获得后的新淘链数量
+                $suoyou = $v["jin_total"] + $shengyu;//获得后的亚富链数量
                 if ($suoyou >= $totals) {//是否已经超出封顶
                     $xiaosheng = $totals - $v["jin_total"];//获得超出的数量
                     if ($xiaosheng > 0) {//数量大于零说明还有未超出封顶
@@ -92,13 +92,13 @@ if ($arr) {
                 }
             } else {
                 if ($v["jin_total"] >= $userStaticExcessStandard) {
-                    $kexcess = $jintai * $proportion["static_deduct"] / 100;//超出的新淘链扣除比例
+                    $kexcess = $jintai * $proportion["static_deduct"] / 100;//超出的亚富链扣除比例
                     $jin_num = $jintai - $kexcess;
                     $jintais = $v["jin_num"] + $jin_num;
                     $jin_total = $v["jin_total"] + $jin_num;
                 } else {
                     $excess = $jin_total - $userStaticExcessStandard;
-                    $kexcess = $excess * $proportion["static_deduct"] / 100;//超出的新淘链扣除比例
+                    $kexcess = $excess * $proportion["static_deduct"] / 100;//超出的亚富链扣除比例
                     $jin_num = $jintai - $kexcess;
                     $jintais = $v["jin_num"] + $jin_num;
                     $jin_total = $v["jin_total"] + $jin_num;
@@ -156,7 +156,7 @@ if ($arr) {
             }
 
             $keyong_jin = $all_jin * $proportion["one_role"] / 100;
-            if ($val["consume_cp"] >= $proportion["one_min_consume"] && $proportion["one_consume"] >= $val["consume_cp"]) {//应该奖励的新淘链值
+            if ($val["consume_cp"] >= $proportion["one_min_consume"] && $proportion["one_consume"] >= $val["consume_cp"]) {//应该奖励的亚富链值
                 $jintai_one = $keyong_jin * $proportion["one_percent"] / 100;
             } elseif ($val["consume_cp"] >= $proportion["two_min_consume"] && $proportion["two_consume"] >= $val["consume_cp"]) {
                 $jintai_one = $keyong_jin * $proportion["two_percent"] / 100;
@@ -429,7 +429,7 @@ if ($arr) {
                 }
 
                 $jintai_threes = $dongtai_suanli + $pingji_suanli;
-                if ($prav["consume_cp"] >= $proportion["one_min_consume"] && $proportion["one_consume"] >= $prav["consume_cp"]) {//应该奖励的新淘链值
+                if ($prav["consume_cp"] >= $proportion["one_min_consume"] && $proportion["one_consume"] >= $prav["consume_cp"]) {//应该奖励的亚富链值
                     $jintai_three = $jintai_threes * $proportion["one_percent"] / 100;
                 } elseif ($prav["consume_cp"] >= $proportion["two_min_consume"] && $proportion["two_consume"] >= $prav["consume_cp"]) {
                     $jintai_three = $jintai_threes * $proportion["two_percent"] / 100;

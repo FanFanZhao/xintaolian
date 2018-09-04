@@ -221,7 +221,7 @@ class Gold extends MobileBase
     }
 
     /**
-     * 新淘链转账
+     * 亚富链转账
      */
     public function transfer()
     {
@@ -232,7 +232,7 @@ class Gold extends MobileBase
             if (session('__token__') !== I('post.__token__', '')) {
                 $this->ajaxReturn(['status' => 0, 'msg' => '参数错误']);
             };
-            $money = I('post.money', 0);//转账的新淘链
+            $money = I('post.money', 0);//转账的亚富链
             if ($money <= 0) {
                 $this->ajaxReturn(['status' => 0, 'msg' => '请确定转账金额大于0 ', 'url' => U('Mobile/Gold/transfer_list')]);
             }
@@ -250,21 +250,21 @@ class Gold extends MobileBase
             $money = floatval($money);
             $jin_num = floatval($this->user['jin_num']);
             if ($money > $jin_num) {
-                $this->ajaxReturn(['status' => 0, 'msg' => '您的新淘链不足']);
+                $this->ajaxReturn(['status' => 0, 'msg' => '您的亚富链不足']);
             }
             $log_id = jin_transfer_log($user_id, $money, $desc, $users['user_id'], 1, 0);
             if ($log_id != false) {
                 Db::startTrans();
-                $re = accountLog($user_id, 0, 0, '新淘链转账', 0, 0, 0, 0, 0, -$money);//扣除转账人的新淘链
+                $re = accountLog($user_id, 0, 0, '亚富链转账', 0, 0, 0, 0, 0, -$money);//扣除转账人的亚富链
                 //如果有手续费
-                $jin_fee = tpCache('basic.jin_fee') / 100;//新淘链转账手续费比例
+                $jin_fee = tpCache('basic.jin_fee') / 100;//亚富链转账手续费比例
                 if ($jin_fee <= 0) {
                     $shouxu = 0;
                 } else {
                     $shouxu = bcmul(number_format($money, 6, '.', ''), number_format($jin_fee, 2, '.', ''));
                 }
                 $shi_money = $money - $shouxu;
-                $res = accountLog($users['user_id'], 0, 0, '新淘链收账', 0, 0, 0, 0, 0, $shi_money);//增加收账人的新淘链
+                $res = accountLog($users['user_id'], 0, 0, '亚富链收账', 0, 0, 0, 0, 0, $shi_money);//增加收账人的亚富链
                 if ($re && $res) {
                     $update = Db::name('jin_transfer_log')->where('id', $log_id)->update(array('status' => 1));
                     $update ? Db::commit() : Db::rollback();

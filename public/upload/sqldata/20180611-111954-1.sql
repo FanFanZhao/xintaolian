@@ -31,10 +31,10 @@ CREATE TABLE `tp_account_log` (
   `jstranser` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '转账积分数额',
   `change_id` int(10) NOT NULL DEFAULT '0' COMMENT '易物区订单id',
   `withdraw_money` decimal(10,2) DEFAULT '0.00' COMMENT '提现币',
-  `jin_num` decimal(20,6) DEFAULT '0.000000' COMMENT '新淘链',
+  `jin_num` decimal(20,6) DEFAULT '0.000000' COMMENT '亚富链',
   `dedication_money` decimal(10,2) DEFAULT '0.00' COMMENT '奉献值',
   `consume_cp` decimal(20,8) DEFAULT '0.00000000' COMMENT '算力',
-  `type` tinyint(2) DEFAULT '0' COMMENT '默认0算力获得新淘链;1购买或者商城后台增加',
+  `type` tinyint(2) DEFAULT '0' COMMENT '默认0算力获得亚富链;1购买或者商城后台增加',
   PRIMARY KEY (`log_id`) USING BTREE,
   KEY `user_id` (`user_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
@@ -231,7 +231,7 @@ INSERT INTO `tp_admin_log` VALUES ('7', '1', '后台登录', '123.14.44.89', '/i
 INSERT INTO `tp_admin_log` VALUES ('8', '1', '后台登录', '111.74.7.218', '/index.php?m=Admin&c=Admin&a=login&t=0.18024094493496223', '1527430189', '0');
 INSERT INTO `tp_admin_log` VALUES ('9', '1', '后台登录', '182.108.10.190', '/index.php?m=Admin&c=Admin&a=login&t=0.18536159310249656', '1527481641', '0');
 INSERT INTO `tp_admin_log` VALUES ('10', '1', '后台登录', '182.108.10.190', '/index.php?m=Admin&c=Admin&a=login&t=0.9952848034591759', '1527481805', '0');
-INSERT INTO `tp_admin_log` VALUES ('11', '1', '新增店铺：新淘网官方自营', '182.108.10.190', '/index.php/admin/Store/store_add', '1527481901', '0');
+INSERT INTO `tp_admin_log` VALUES ('11', '1', '新增店铺：亚富网官方自营', '182.108.10.190', '/index.php/admin/Store/store_add', '1527481901', '0');
 INSERT INTO `tp_admin_log` VALUES ('12', '1', '后台登录', '182.108.10.190', '/index.php?m=Admin&c=Admin&a=login&t=0.17636217484084926', '1527482810', '0');
 INSERT INTO `tp_admin_log` VALUES ('13', '1', '后台登录', '182.108.10.234', '/index.php?m=Admin&c=Admin&a=login&t=0.38221898571681545', '1527568230', '0');
 INSERT INTO `tp_admin_log` VALUES ('14', '2', '后台登录', '182.108.10.234', '/index.php?m=Admin&c=Admin&a=login&t=0.7929104909290401', '1527568946', '0');
@@ -610,11 +610,11 @@ CREATE TABLE `tp_config` (
 -- Records of `tp_config`
 -- -----------------------------
 INSERT INTO `tp_config` VALUES ('1', 'record_no', '赣ICP备18007374号', 'shop_info', '');
-INSERT INTO `tp_config` VALUES ('2', 'store_name', '新淘商城网', 'shop_info', '');
+INSERT INTO `tp_config` VALUES ('2', 'store_name', '亚富商城网', 'shop_info', '');
 INSERT INTO `tp_config` VALUES ('3', 'store_logo', '', 'shop_info', '');
-INSERT INTO `tp_config` VALUES ('4', 'store_title', '新淘商城网', 'shop_info', '');
-INSERT INTO `tp_config` VALUES ('5', 'store_desc', '新淘商城网', 'shop_info', '');
-INSERT INTO `tp_config` VALUES ('6', 'store_keyword', '新淘商城网', 'shop_info', '');
+INSERT INTO `tp_config` VALUES ('4', 'store_title', '亚富商城网', 'shop_info', '');
+INSERT INTO `tp_config` VALUES ('5', 'store_desc', '亚富商城网', 'shop_info', '');
+INSERT INTO `tp_config` VALUES ('6', 'store_keyword', '亚富商城网', 'shop_info', '');
 INSERT INTO `tp_config` VALUES ('7', 'contact', '', 'shop_info', '');
 INSERT INTO `tp_config` VALUES ('8', 'phone', '', 'shop_info', '');
 INSERT INTO `tp_config` VALUES ('9', 'address', '', 'shop_info', '');
@@ -623,7 +623,7 @@ INSERT INTO `tp_config` VALUES ('11', 'qq2', '', 'shop_info', '');
 INSERT INTO `tp_config` VALUES ('12', 'qq3', '', 'shop_info', '');
 INSERT INTO `tp_config` VALUES ('16', 'is_mark', '1', 'water', '');
 INSERT INTO `tp_config` VALUES ('17', 'mark_type', 'text', 'water', '');
-INSERT INTO `tp_config` VALUES ('18', 'mark_txt', '新淘商城', 'water', '');
+INSERT INTO `tp_config` VALUES ('18', 'mark_txt', '亚富商城', 'water', '');
 INSERT INTO `tp_config` VALUES ('19', 'mark_txt_size', '10', 'water', '');
 INSERT INTO `tp_config` VALUES ('20', 'mark_txt_color', '#000000', 'water', '');
 INSERT INTO `tp_config` VALUES ('21', 'mark_img', '', 'water', '');
@@ -655,7 +655,7 @@ INSERT INTO `tp_config` VALUES ('46', 'hot_keywords', '潮牌服装|美味零食
 INSERT INTO `tp_config` VALUES ('49', 'sms_platform', '2', 'sms', '');
 INSERT INTO `tp_config` VALUES ('50', 'sms_appkey', 'tz792322620', 'sms', '');
 INSERT INTO `tp_config` VALUES ('51', 'sms_secretKey', 'a792322620', 'sms', '');
-INSERT INTO `tp_config` VALUES ('52', 'sms_product', '新淘商城', 'sms', '');
+INSERT INTO `tp_config` VALUES ('52', 'sms_product', '亚富商城', 'sms', '');
 INSERT INTO `tp_config` VALUES ('53', 'regis_sms_enable', '1', 'sms', '');
 INSERT INTO `tp_config` VALUES ('54', 'forget_pwd_sms_enable', '1', 'sms', '');
 INSERT INTO `tp_config` VALUES ('55', 'bind_mobile_sms_enable', '1', 'sms', '');
@@ -946,7 +946,7 @@ CREATE TABLE `tp_goldchain_daysum` (
   `inherit_price` decimal(20,8) NOT NULL DEFAULT '0.00000000' COMMENT '次日开盘价',
   PRIMARY KEY (`id`),
   UNIQUE KEY `date` (`date`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='新淘链日交易统计表';
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='亚富链日交易统计表';
 
 -- -----------------------------
 -- Records of `tp_goldchain_daysum`
@@ -973,7 +973,7 @@ CREATE TABLE `tp_goldchain_entrust` (
   `create_time` int(11) DEFAULT NULL COMMENT '业务申请时间',
   `complete_time` int(11) DEFAULT NULL COMMENT '业务完成时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='新淘链交易委托';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='亚富链交易委托';
 
 
 -- -----------------------------
@@ -991,7 +991,7 @@ CREATE TABLE `tp_goldchain_log` (
   `memo` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
   `create_time` int(11) DEFAULT NULL COMMENT '业务时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='新淘链日志';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='亚富链日志';
 
 -- -----------------------------
 -- Records of `tp_goldchain_log`
@@ -1021,7 +1021,7 @@ CREATE TABLE `tp_goldchain_trade` (
   `create_time` int(11) DEFAULT NULL COMMENT '业务时间',
   `complete_time` int(11) DEFAULT NULL COMMENT '完成时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='新淘链交易表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='亚富链交易表';
 
 
 -- -----------------------------
@@ -1702,7 +1702,7 @@ DROP TABLE IF EXISTS `tp_jin_transfer_log`;
 CREATE TABLE `tp_jin_transfer_log` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '转账人的ID',
-  `type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '转账类型1：新淘链转账 2其他',
+  `type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '转账类型1：亚富链转账 2其他',
   `money` decimal(20,6) unsigned NOT NULL DEFAULT '0.000000' COMMENT '转账金额',
   `shouxu` decimal(20,8) unsigned NOT NULL DEFAULT '0.00000000' COMMENT '手续费',
   `shi_money` decimal(20,8) unsigned NOT NULL DEFAULT '0.00000000' COMMENT '实际到账',
@@ -1711,7 +1711,7 @@ CREATE TABLE `tp_jin_transfer_log` (
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '转账状态 0未转账 1成功 2失败',
   `add_time` int(11) NOT NULL DEFAULT '0' COMMENT '转账时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='新淘链转账';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='亚富链转账';
 
 
 -- -----------------------------
@@ -1720,7 +1720,7 @@ CREATE TABLE `tp_jin_transfer_log` (
 DROP TABLE IF EXISTS `tp_jinnum_log`;
 CREATE TABLE `tp_jinnum_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `jin_num` varchar(255) NOT NULL COMMENT '新淘链数量',
+  `jin_num` varchar(255) NOT NULL COMMENT '亚富链数量',
   `uid` int(11) NOT NULL COMMENT '用户id',
   `creat_time` datetime NOT NULL COMMENT '创建时间',
   `type` varchar(255) NOT NULL COMMENT '奖励类型',
@@ -50229,13 +50229,13 @@ CREATE TABLE `tp_sms_log` (
 -- Records of `tp_sms_log`
 -- -----------------------------
 INSERT INTO `tp_sms_log` VALUES ('1', '13263010635', 't4e94g8fae8f9itl8ttrvehlve', '1527430217', '8735', '0', '1', '验证码8735，用于密码找回，如非本人操作，请及时检查账户安全', '2', '');
-INSERT INTO `tp_sms_log` VALUES ('2', '13733845709', '16lg99isb1m513o21af1ebke8b', '1527684884', '2544', '0', '1', '验证码2544，您正在注册成为新淘链的用户，感谢您的支持!', '1', '');
+INSERT INTO `tp_sms_log` VALUES ('2', '13733845709', '16lg99isb1m513o21af1ebke8b', '1527684884', '2544', '0', '1', '验证码2544，您正在注册成为亚富链的用户，感谢您的支持!', '1', '');
 INSERT INTO `tp_sms_log` VALUES ('3', '', '5vet5o5esibqfpn21m2rmujakj', '1527686616', '', '0', '0', '您有新订单，收货人：温智伟，联系方式：13263010635，请您及时查收.', '3', '');
 INSERT INTO `tp_sms_log` VALUES ('4', '', '1em9f1c1c9j9qv67eo1t1nao43', '1527686729', '', '0', '0', '您有新订单，收货人：温智伟，联系方式：13263010635，请您及时查收.', '3', '');
 INSERT INTO `tp_sms_log` VALUES ('5', '13263010635', '5vet5o5esibqfpn21m2rmujakj', '1527687089', '', '0', '1', '尊敬的13263010635用户，您的订单${order_sn}已发货，收货人温智伟，请您及时查收', '5', '');
 INSERT INTO `tp_sms_log` VALUES ('6', '', '1em9f1c1c9j9qv67eo1t1nao43', '1527690602', '', '0', '0', '您有新订单，收货人：温智伟，联系方式：13263010635，请您及时查收.', '3', '');
 INSERT INTO `tp_sms_log` VALUES ('7', '', '0g2vvuij42ts43rbvuqqpjq9ib', '1527752075', '', '0', '0', '您有新订单，收货人：温智伟，联系方式：13263010635，请您及时查收.', '3', '');
-INSERT INTO `tp_sms_log` VALUES ('8', '13263010635', 'n32097rbas0d2kukrujlloc28m', '1528164535', '8438', '0', '1', '验证码8438，您正在注册成为新淘链的用户，感谢您的支持!', '1', '');
+INSERT INTO `tp_sms_log` VALUES ('8', '13263010635', 'n32097rbas0d2kukrujlloc28m', '1528164535', '8438', '0', '1', '验证码8438，您正在注册成为亚富链的用户，感谢您的支持!', '1', '');
 INSERT INTO `tp_sms_log` VALUES ('9', '', 'knsd0lqbof4f4katqdcankeuea', '1528466298', '', '0', '0', '您有新订单，收货人：温智伟，联系方式：13263010635，请您及时查收.', '3', '');
 INSERT INTO `tp_sms_log` VALUES ('10', '', 'v29jmh8roibdr79m6olfad7k8n', '1528466720', '', '0', '0', '您有新订单，收货人：温智伟，联系方式：13263010635，请您及时查收.', '3', '');
 INSERT INTO `tp_sms_log` VALUES ('11', '', '3pksd9312d9sheduc4284k9ekh', '1528469340', '', '0', '0', '您有新订单，收货人：温智伟，联系方式：13263010635，请您及时查收.', '3', '');
@@ -50262,12 +50262,12 @@ CREATE TABLE `tp_sms_template` (
 -- -----------------------------
 -- Records of `tp_sms_template`
 -- -----------------------------
-INSERT INTO `tp_sms_template` VALUES ('1', '新淘商城', '新淘商城', '验证码${code}，您正在注册成为新淘商城的用户，感谢您的支持!', '1', '1527328151');
-INSERT INTO `tp_sms_template` VALUES ('2', '新淘商城', '新淘商城', '验证码${code}，用于密码找回，如非本人操作，请及时检查账户安全', '2', '1527328181');
-INSERT INTO `tp_sms_template` VALUES ('3', '新淘商城', '新淘商城', '您有新订单，收货人：${consignee}，联系方式：${phone}，请您及时查收.', '3', '1527328193');
-INSERT INTO `tp_sms_template` VALUES ('4', '新淘商城', '新淘商城', '订单:${order_sn}已经支付，请及时发货.', '4', '1527328205');
-INSERT INTO `tp_sms_template` VALUES ('5', '新淘商城', '新淘商城', '尊敬的${user_name}用户，您的订单${order_sn}已发货，收货人${consignee}，请您及时查收', '5', '1527328213');
-INSERT INTO `tp_sms_template` VALUES ('6', '新淘商城', '新淘商城', '尊敬的 ${user_name}用户，您的验证码为${code}, 本验证码有效时间为10分钟, 请勿告诉他人.', '6', '1527328220');
+INSERT INTO `tp_sms_template` VALUES ('1', '亚富商城', '亚富商城', '验证码${code}，您正在注册成为亚富商城的用户，感谢您的支持!', '1', '1527328151');
+INSERT INTO `tp_sms_template` VALUES ('2', '亚富商城', '亚富商城', '验证码${code}，用于密码找回，如非本人操作，请及时检查账户安全', '2', '1527328181');
+INSERT INTO `tp_sms_template` VALUES ('3', '亚富商城', '亚富商城', '您有新订单，收货人：${consignee}，联系方式：${phone}，请您及时查收.', '3', '1527328193');
+INSERT INTO `tp_sms_template` VALUES ('4', '亚富商城', '亚富商城', '订单:${order_sn}已经支付，请及时发货.', '4', '1527328205');
+INSERT INTO `tp_sms_template` VALUES ('5', '亚富商城', '亚富商城', '尊敬的${user_name}用户，您的订单${order_sn}已发货，收货人${consignee}，请您及时查收', '5', '1527328213');
+INSERT INTO `tp_sms_template` VALUES ('6', '亚富商城', '亚富商城', '尊敬的 ${user_name}用户，您的验证码为${code}, 本验证码有效时间为10分钟, 请勿告诉他人.', '6', '1527328220');
 
 -- -----------------------------
 -- Table structure for `tp_spec`
@@ -50461,7 +50461,7 @@ CREATE TABLE `tp_store` (
 -- -----------------------------
 -- Records of `tp_store`
 -- -----------------------------
-INSERT INTO `tp_store` VALUES ('1', '新淘网官方自营', '0', '19', '17607978288', 'tz792322620', '0', '', '0', '0', '0', '', '0.0000000', '0.0000000', '', '1', '', '0', '', '1527481901', '', '/public/upload/seller/2018/06-08/b67da43dc22201d1b499ffdf6d047d04.png', '', '', '', '', '', '', '', '', '', '0', 'default', '0', '0.00', '0.00', '0.00', '0', '', '', '', '0', '', '', '', '0.00', '0', '0', '0', '1', '1', '1', '1', '0', '', '', '', '', '0', '0', '1', '10000.00', '1', '9.80', '-9.80', '0', '0', '', '0', '');
+INSERT INTO `tp_store` VALUES ('1', '亚富网官方自营', '0', '19', '17607978288', 'tz792322620', '0', '', '0', '0', '0', '', '0.0000000', '0.0000000', '', '1', '', '0', '', '1527481901', '', '/public/upload/seller/2018/06-08/b67da43dc22201d1b499ffdf6d047d04.png', '', '', '', '', '', '', '', '', '', '0', 'default', '0', '0.00', '0.00', '0.00', '0', '', '', '', '0', '', '', '', '0.00', '0', '0', '0', '1', '1', '1', '1', '0', '', '', '', '', '0', '0', '1', '10000.00', '1', '9.80', '-9.80', '0', '0', '', '0', '');
 INSERT INTO `tp_store` VALUES ('3', '三只松鼠', '0', '20', '13263010635', 'tz792322620', '1', '', '0', '0', '0', '', '0.0000000', '0.0000000', '', '1', '', '0', '', '1528686470', '1560222470', '', '', '', '', '', '', '', '', '', '', '0', 'default', '0', '0.00', '0.00', '0.00', '0', '', '', '', '0', '', '', '', '0.00', '0', '0', '0', '0', '0', '0', '0', '0', '', '', '', '', '0', '0', '0', '0.00', '0', '0.00', '0.00', '0', '1', '', '0', '');
 
 -- -----------------------------
@@ -50542,7 +50542,7 @@ CREATE TABLE `tp_store_apply` (
 -- -----------------------------
 -- Records of `tp_store_apply`
 -- -----------------------------
-INSERT INTO `tp_store_apply` VALUES ('1', '19', '', '', '', '', '1', '', '0', '0', '0', '', '', '', '', '', '', '', '1', '', '', '', '', '', '', '', '', '', '0', '1', '', '', '新淘网官方自营', 'tz792322620', '0', '', '', '', '', '', '', '', '', '', '', '0', '0', '0', '', '1', '0', '0.00', '0', '0', '', '', '0', '0', '', '', '0.00', '', '1', '', '0', '0', '');
+INSERT INTO `tp_store_apply` VALUES ('1', '19', '', '', '', '', '1', '', '0', '0', '0', '', '', '', '', '', '', '', '1', '', '', '', '', '', '', '', '', '', '0', '1', '', '', '亚富网官方自营', 'tz792322620', '0', '', '', '', '', '', '', '', '', '', '', '0', '0', '0', '', '1', '0', '0.00', '0', '0', '', '', '0', '0', '', '', '0.00', '', '1', '', '0', '0', '');
 INSERT INTO `tp_store_apply` VALUES ('2', '1', '温智伟', '1326310635', '', '', '1', '', '0', '0', '0', '', '', '', '', '', '', '', '1', '', '', '', '', '', '', '', '', '', '0', '1', '', '', '温智伟小店', 'tz248550361', '0', '江西省南昌市', '', '', '', '', '', '', '', '', '', '0', '0', '0', '', '1', '0', '0.00', '0', '0', '卖场店', '1', '0', '0', '', '', '0.00', '', '1', '', '1528164392', '0', '0');
 INSERT INTO `tp_store_apply` VALUES ('3', '20', '温智伟', '13263010635', '', '', '1', '', '0', '0', '0', '', '', '', '', '', '', '', '1', '', '', '', '', '', '', '', '', '', '0', '1', '', '', '三只松鼠', 'tz792322620', '0', '江西省南昌市', '', '', '', '', '', '', '', '', '', '0', '0', '0', '', '1', '0', '0.00', '0', '0', '卖场店', '1', '0', '0', '', '', '0.00', '', '1', '', '1528686470', '0', '0');
 
@@ -51207,16 +51207,16 @@ CREATE TABLE `tp_users` (
   `member_name` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '会员系统名字',
   `id_number` varchar(20) DEFAULT NULL COMMENT '身份证号',
   `pid` int(11) NOT NULL DEFAULT '0' COMMENT '直推人ID',
-  `import_jin_num` decimal(20,6) NOT NULL DEFAULT '0.000000' COMMENT '初始导入新淘链',
-  `jin_num` decimal(20,6) NOT NULL DEFAULT '0.000000' COMMENT '新淘链数量',
-  `jin_total` varchar(255) NOT NULL DEFAULT '0' COMMENT '累积获得新淘链数量',
+  `import_jin_num` decimal(20,6) NOT NULL DEFAULT '0.000000' COMMENT '初始导入亚富链',
+  `jin_num` decimal(20,6) NOT NULL DEFAULT '0.000000' COMMENT '亚富链数量',
+  `jin_total` varchar(255) NOT NULL DEFAULT '0' COMMENT '累积获得亚富链数量',
   `consume_total` varchar(255) NOT NULL DEFAULT '0' COMMENT '累计消费金额',
   `consume_cp` decimal(20,8) NOT NULL DEFAULT '0.00000000' COMMENT '消费算力',
   `team_performance` decimal(15,2) NOT NULL DEFAULT '0.00' COMMENT '团队业绩',
-  `team_jin_num` decimal(20,6) NOT NULL DEFAULT '0.000000' COMMENT '团队新淘链数量',
+  `team_jin_num` decimal(20,6) NOT NULL DEFAULT '0.000000' COMMENT '团队亚富链数量',
   `role_level` varchar(255) NOT NULL DEFAULT '0' COMMENT '会员角色等级',
   `max_parents` varchar(2048) NOT NULL DEFAULT '0' COMMENT '无限极分类字段',
-  `frost_jin_num` varchar(255) NOT NULL DEFAULT '0' COMMENT '冻结新淘链数量',
+  `frost_jin_num` varchar(255) NOT NULL DEFAULT '0' COMMENT '冻结亚富链数量',
   `frost_consume_cp` varchar(255) NOT NULL DEFAULT '0' COMMENT '冻结消费算力',
   `withdraw_money` decimal(20,8) NOT NULL DEFAULT '0.00000000' COMMENT '提现币',
   `dedication_money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '奉献值',
@@ -51224,8 +51224,8 @@ CREATE TABLE `tp_users` (
   `static_time` varchar(255) NOT NULL COMMENT '获得静态奖励的时间',
   `dynamic_time` varchar(255) NOT NULL COMMENT '动态奖励时间',
   `calculate` int(11) NOT NULL COMMENT '手动点击计算时间',
-  `dynamic_jintai` varchar(255) NOT NULL COMMENT '今日获得的新淘链数量',
-  `dynamic_shangxian` decimal(20,8) NOT NULL COMMENT '新淘链的每日动态上限',
+  `dynamic_jintai` varchar(255) NOT NULL COMMENT '今日获得的亚富链数量',
+  `dynamic_shangxian` decimal(20,8) NOT NULL COMMENT '亚富链的每日动态上限',
   `public_key` varchar(255) NOT NULL COMMENT '公钥',
   `private_key` varchar(255) NOT NULL COMMENT '私钥',
   `child_num` int(11) NOT NULL DEFAULT '0' COMMENT '直推人数',
@@ -51292,14 +51292,14 @@ CREATE TABLE `tp_users_bak` (
   `is_usercenter` int(1) NOT NULL DEFAULT '2' COMMENT '判断是否为会员系统会员，1是，0为商城会员',
   `member_name` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '会员系统名字',
   `id_number` varchar(20) DEFAULT NULL COMMENT '身份证号',
-  `jin_num` varchar(255) NOT NULL DEFAULT '0' COMMENT '新淘链数量',
-  `jin_total` varchar(255) NOT NULL DEFAULT '0' COMMENT '累积获得新淘链数量',
+  `jin_num` varchar(255) NOT NULL DEFAULT '0' COMMENT '亚富链数量',
+  `jin_total` varchar(255) NOT NULL DEFAULT '0' COMMENT '累积获得亚富链数量',
   `consume_total` varchar(255) NOT NULL DEFAULT '0' COMMENT '累计消费金额',
   `consume_cp` varchar(255) NOT NULL DEFAULT '0' COMMENT '消费算力',
   `team_performance` varchar(255) NOT NULL DEFAULT '0' COMMENT '团队业绩',
   `role_level` varchar(255) NOT NULL DEFAULT '0' COMMENT '会员角色等级',
   `max_parents` varchar(255) NOT NULL DEFAULT '0' COMMENT '无限极分类字段',
-  `frost_jin_num` varchar(255) NOT NULL DEFAULT '0' COMMENT '冻结新淘链数量',
+  `frost_jin_num` varchar(255) NOT NULL DEFAULT '0' COMMENT '冻结亚富链数量',
   `frost_consume_cp` varchar(255) NOT NULL DEFAULT '0' COMMENT '冻结消费算力',
   `withdraw_money` varchar(255) NOT NULL DEFAULT '0' COMMENT '提现币',
   PRIMARY KEY (`user_id`) USING BTREE,

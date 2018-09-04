@@ -18,9 +18,9 @@ class GoldchainLogic
     const TRADE_SOLD_WAY = 1, TRADE_BUY_WAY = 2;
 
     /**
-     * 添加新淘链相关余额
+     * 添加亚富链相关余额
      * @param integer $user_id 用户id
-     * @param integer $type 类型1.新淘链 2.算力 3.余额(消费余额)
+     * @param integer $type 类型1.亚富链 2.算力 3.余额(消费余额)
      * @param float $addQty 要添加的数量
      * @param float $trade_no 相关业务单号
      * @param string $memo 备注
@@ -33,7 +33,7 @@ class GoldchainLogic
         $return = array();
         $addQty = number_format($addQty, $decimalScale, '.', ''); //转换为定点
         $fieldName = array(
-            'jin_num' => '新淘链',
+            'jin_num' => '亚富链',
             'consume_cp' => '消费算力',
             'user_money' => '消费余额',
         );
@@ -95,9 +95,9 @@ class GoldchainLogic
     }
 
     /**
-     * 冻结新淘链相关余额(只是冻结,并不加减和回退相关余额)
+     * 冻结亚富链相关余额(只是冻结,并不加减和回退相关余额)
      * @param integer $user_id 用户id
-     * @param integer $type 类型1.新淘链 2.算力 3.余额
+     * @param integer $type 类型1.亚富链 2.算力 3.余额
      * @param float @addQty 要冻结的数量
      * @param float $trade_no 相关业务单号
      * @param string $memo 备注
@@ -109,7 +109,7 @@ class GoldchainLogic
         $user = Users::get($user_id);
         $return = array();
         $fieldName = array(
-            'frost_jin_num' => '新淘链',
+            'frost_jin_num' => '亚富链',
             'frost_consume_cp' => '算力',
             'frozen_money' => '消费余额余额',
         );
@@ -172,7 +172,7 @@ class GoldchainLogic
     /**
      * 余额冻结
      * @param integer $user_id 用户id
-     * @param integer $type 类型1.新淘链 2.算力 3.余额(消费余额)
+     * @param integer $type 类型1.亚富链 2.算力 3.余额(消费余额)
      * @param float $qty 冻结的数量
      * @param float $trade_no 相关业务单号
      * @param string $memo 备注
@@ -184,9 +184,9 @@ class GoldchainLogic
         //检测余额是否充足
         $user = Users::get($user_id);
         $fieldName = array(
-            'jin_num' => '新淘链',
+            'jin_num' => '亚富链',
             'consume_cp' => '算力',
-            'frost_jin_num' => '已冻结新淘链',
+            'frost_jin_num' => '已冻结亚富链',
             'frost_consume_cp' => '已冻结算力',
             'user_money' => '消费余额',
             'frozen_money' => '已冻结消费余额',
@@ -223,7 +223,7 @@ class GoldchainLogic
             return $result;
         }
         Db::transaction(function () use ($user_id, $type, $qty, $trade_no, $memo, &$result) {
-            $addBalanceResult = $this->addBalance($user_id, $type, -$qty, $trade_no, $memo . '扣除' . ($type == 1 ? '新淘链' : '算力'));
+            $addBalanceResult = $this->addBalance($user_id, $type, -$qty, $trade_no, $memo . '扣除' . ($type == 1 ? '亚富链' : '算力'));
             if ($addBalanceResult['code'] == 0) {
                 //throw new Exception('扣除用户' . $fieldName[$balanceField] . '余额失败');
                 $result = array(
@@ -233,7 +233,7 @@ class GoldchainLogic
                 );
                 return $result;
             }
-            $frozenBalanceResult = $this->frozenBalance($user_id, $type, $qty, $trade_no, $memo . '冻结'. ($type == 1 ? '新淘链' : '算力'));
+            $frozenBalanceResult = $this->frozenBalance($user_id, $type, $qty, $trade_no, $memo . '冻结'. ($type == 1 ? '亚富链' : '算力'));
             if ($frozenBalanceResult['code'] == 0) {
                 //throw new Exception('冻结用户余额(' . $fieldName[$balanceField] . ')失败');
                 $result = array(
@@ -255,7 +255,7 @@ class GoldchainLogic
     /**
      * 撤销冻结
      * @param integer $user_id 用户id
-     * @param integer $type 类型1.新淘链 2.算力 3.余额
+     * @param integer $type 类型1.亚富链 2.算力 3.余额
      * @param integer $qty 撤销冻结的数量
      * @param float $trade_no 相关业务单号
      * @param string $memo 备注
@@ -267,10 +267,10 @@ class GoldchainLogic
         //检测余额是否充足
         $user = Users::get($user_id);
         $fieldName = array(
-            'jin_num' => '新淘链',
+            'jin_num' => '亚富链',
             'consume_cp' => '算力',
             'user_money' => '余额',
-            'frost_jin_num' => '已冻结新淘链',
+            'frost_jin_num' => '已冻结亚富链',
             'frost_consume_cp' => '已冻结算力',
             'frozen_money' => '已冻结余额',
 
@@ -350,7 +350,7 @@ class GoldchainLogic
     {
         $decimalScale = config('default_decimal_scale');
         if ($type == 1) {
-            //冻结新淘链
+            //冻结亚富链
             $frozenType = 1;
             $targetQty = number_format($qty, $decimalScale, '.', '');
         } elseif ($type == 2) {
@@ -470,7 +470,7 @@ class GoldchainLogic
     }
 
     /**
-     * 委托交易后刷新用户的相关新淘链相关资金
+     * 委托交易后刷新用户的相关亚富链相关资金
      * @param integer $trade_id 交易id
      * @return bool 成功返回真,失败返回假
      */
@@ -492,19 +492,19 @@ class GoldchainLogic
             return false;
         }
         Db::startTrans();
-        //扣除买方冻结的算力,增加买方的新淘链
+        //扣除买方冻结的算力,增加买方的亚富链
         $res = $this->frozenBalance($buy_user_id, 2, -$goldchainTrade->amount, $goldchainTrade->trade_no, '交易扣除冻结算力');
         if ($res['code'] == 0) {
             Db::rollback();
             return false;
         }
-        $res = $this->addBalance($buy_user_id, 1, $goldchainTrade->trade_qty, $goldchainTrade->trade_no, '交易成功增加新淘链');
+        $res = $this->addBalance($buy_user_id, 1, $goldchainTrade->trade_qty, $goldchainTrade->trade_no, '交易成功增加亚富链');
         if ($res['code'] == 0) {
             Db::rollback();
             return false;
         }
-        //扣除卖方冻结的新淘链,增加提现币
-        $res = $this->frozenBalance($sold_user_id, 1, -$goldchainTrade->trade_qty, $goldchainTrade->trade_no, '交易扣除冻结新淘链');
+        //扣除卖方冻结的亚富链,增加提现币
+        $res = $this->frozenBalance($sold_user_id, 1, -$goldchainTrade->trade_qty, $goldchainTrade->trade_no, '交易扣除冻结亚富链');
         if ($res == 0) {
             return false;
             Db::rollback();
@@ -538,7 +538,7 @@ class GoldchainLogic
             if (!$soldResult || !$buyResult) {
                 Db::rollbak();
             }
-            //扣除买方冻结的算力,增加买方的新淘链
+            //扣除买方冻结的算力,增加买方的亚富链
             $this->frozenBalance(
                 $buyEntrust->user_id,
                 2,
@@ -551,16 +551,16 @@ class GoldchainLogic
                 1,
                 $goldchainTrade->trade_qty,
                 $goldchainTrade->trade_no,
-                '交易成功增加新淘链'
+                '交易成功增加亚富链'
             ) || Db::rollback();
 
-            //扣除卖方冻结的新淘链,增加提现币
+            //扣除卖方冻结的亚富链,增加提现币
             $this->frozenBalance(
                 $soldEntrust->user_id,
                 1,
                 -$goldchainTrade->trade_qty,
                 $goldchainTrade->trade_no,
-                '交易扣除冻结新淘链'
+                '交易扣除冻结亚富链'
             ) || Db::rollback();
             accountLog(
                 $soldEntrust->user_id,
@@ -686,7 +686,7 @@ class GoldchainLogic
     }
 
     /**
-     * 检测当前用户导入新淘链的交易是否需要限制价格
+     * 检测当前用户导入亚富链的交易是否需要限制价格
      * @param integer $user_id 用户id
      * @return bool
      */
@@ -706,7 +706,7 @@ class GoldchainLogic
             });
         })->sum('trade_qty');
         is_null($soldQty) && $soldQty = 0.00;
-        $soldQtyCheckResult = bccomp($soldQty, $user['import_jin_num'], config('default_decimal_scale')); //-1代表导入的新淘链没有卖完
+        $soldQtyCheckResult = bccomp($soldQty, $user['import_jin_num'], config('default_decimal_scale')); //-1代表导入的亚富链没有卖完
         if ($is_usercenter == 1 && time() < $expired_time && $soldQtyCheckResult == -1) {
             return true;
         } else {
@@ -734,7 +734,7 @@ class GoldchainLogic
                 //价格检测
                 return array(
                     'code' => 0,
-                    'msg' => '从旧系统接入的新淘链交易价格必须是:' . $import_goldchain_price . '元',
+                    'msg' => '从旧系统接入的亚富链交易价格必须是:' . $import_goldchain_price . '元',
                     'data' => null,
                 );
             }
@@ -892,7 +892,7 @@ class GoldchainLogic
                 });
             })->sum('trade_qty');
 
-            $todayJinnum = bcadd($todaySoldQty, $user['jin_num'], $decimalScale); //今日新淘链数量
+            $todayJinnum = bcadd($todaySoldQty, $user['jin_num'], $decimalScale); //今日亚富链数量
             $totalLimitQty = bcmul($todayJinnum, strval($limit_ratio), $decimalScale); //今日一共能挂卖数量
             $remainLimitQty = bcsub($totalLimitQty, $todaySoldQty); //今日剩余可挂卖数量
             $nowQty = bcadd($todaySoldQty, $trade_qty, $decimalScale); //本次交易之后总出售数量
@@ -930,7 +930,7 @@ class GoldchainLogic
             $msg = '创建交易成功';
             $return = $goldchainTrade;
             if ($way == GoldchainTrade::TRADE_SOLD_WAY) {
-                //冻结新淘链
+                //冻结亚富链
                 $factAmount = $trade_qty;
             } elseif ($way == GoldchainTrade::TRADE_BUY_WAY) {
                 //冻结算力
@@ -996,7 +996,7 @@ class GoldchainLogic
         }
 
         if ($goldchainTrade->way == GoldchainTrade::TRADE_SOLD_WAY) {
-            //原冻结新淘链
+            //原冻结亚富链
             $factAmount = $goldchainTrade->trade_qty;
         } elseif ($goldchainTrade->way == GoldchainTrade::TRADE_BUY_WAY) {
             //原冻结算力或余额
@@ -1108,7 +1108,7 @@ class GoldchainLogic
                 });
             })->sum('trade_qty');
 
-            $todayJinnum = bcadd($todaySoldQty, $relation_user['jin_num'], $decimalScale); //今日新淘链数量
+            $todayJinnum = bcadd($todaySoldQty, $relation_user['jin_num'], $decimalScale); //今日亚富链数量
             $totalLimitQty = bcmul($todayJinnum, strval($limit_ratio), $decimalScale); //今日一共能卖数量
             $remainLimitQty = bcsub($totalLimitQty, $todaySoldQty); //今日剩余可挂卖数量
             $nowQty = bcadd($todaySoldQty, $trade_qty, $decimalScale); //本次交易之后总出售数量
@@ -1135,7 +1135,7 @@ class GoldchainLogic
                 if ($priceResult != 0) {
                     return array(
                         'code' => 0,
-                        'msg' => '从旧系统接入的新淘链交易价格必须是:' . $importGoldchainPrice . '元',
+                        'msg' => '从旧系统接入的亚富链交易价格必须是:' . $importGoldchainPrice . '元',
                         'data' => null,
                     );
                 }
@@ -1154,7 +1154,7 @@ class GoldchainLogic
                 'data' => null,
             );
         }
-        //新淘链,提现币,算力,余额相关处理
+        //亚富链,提现币,算力,余额相关处理
         if ($status == 1) {
             $afterResult = $this->afterTrade($trade_id);
             if ($afterResult['code'] == 0) {
@@ -1214,7 +1214,7 @@ class GoldchainLogic
             $query->where('date', $time);
         });
         if ($goldchainDaysum) {
-            //更新新淘链日交易统计表
+            //更新亚富链日交易统计表
             if (bccomp($goldchainDaysum->min_price, '0', $decimalScale) == 0 ||
                 bccomp($goldchainDaysum->min_price, $goldchainTrade->price, $decimalScale) == 1) {
                 $goldchainDaysum->min_price = $goldchainTrade->price;
@@ -1225,10 +1225,10 @@ class GoldchainLogic
             $res = $goldchainDaysum->save();
             if ($res === false) {
                 Db::rollback();
-                //throw new Exception('更新新淘链日交易统计表异常');
+                //throw new Exception('更新亚富链日交易统计表异常');
                 $result = array(
                     'code' => 0,
-                    'msg' => '更新新淘链日交易统计表异常',
+                    'msg' => '更新亚富链日交易统计表异常',
                     'data' => null,
                 );
                 return $result;
@@ -1264,7 +1264,7 @@ class GoldchainLogic
             return $data;
         }
         Db::startTrans();
-        //1.扣除买家的消费余额,增加买家的新淘链
+        //1.扣除买家的消费余额,增加买家的亚富链
         $res = $this->addBalance($buy_user_id, 3, -$goldchainTrade->amount, $goldchainTrade->trade_no, '交易成功扣除消费余额');
         if ($res['code'] == 0) {
             Db::rollback();
@@ -1276,25 +1276,25 @@ class GoldchainLogic
             );
             return $data;
         }
-        $res = $this->addBalance($buy_user_id, 1, $goldchainTrade->trade_qty, $goldchainTrade->trade_no, '交易成功增加新淘链');
+        $res = $this->addBalance($buy_user_id, 1, $goldchainTrade->trade_qty, $goldchainTrade->trade_no, '交易成功增加亚富链');
         if ($res['code'] == 0) {
             Db::rollback();
-            //throw new Exception('交易时增加买方新淘链异常');
+            //throw new Exception('交易时增加买方亚富链异常');
             $data = array(
                 'code' => 0,
-                'msg' => '交易时增加买方新淘链异常('. $res['msg'] .')',
+                'msg' => '交易时增加买方亚富链异常('. $res['msg'] .')',
                 'data' => null,
             );
             return $data;
         }
-        //2.扣除卖方的冻结新淘链,增加卖方的提现币
-        $res = $this->frozenBalance($sold_user_id, 1, -$goldchainTrade->trade_qty, $goldchainTrade->trade_no, '交易成功扣除冻结新淘链');
+        //2.扣除卖方的冻结亚富链,增加卖方的提现币
+        $res = $this->frozenBalance($sold_user_id, 1, -$goldchainTrade->trade_qty, $goldchainTrade->trade_no, '交易成功扣除冻结亚富链');
         if ($res['code'] == 0) {
             Db::rollback();
-            //throw new Exception('交易时扣除卖方冻结新淘链');
+            //throw new Exception('交易时扣除卖方冻结亚富链');
             $data = array(
                 'code' => 0,
-                'msg' => '交易时增加买方新淘链异常(' . $res['msg'] .')',
+                'msg' => '交易时增加买方亚富链异常(' . $res['msg'] .')',
                 'data' => null,
             );
             return $data;
@@ -1344,11 +1344,11 @@ class GoldchainLogic
             return $data;
         }
         Db::startTrans();
-        //1.扣除卖方的新淘链,增加卖方的提现币
-        $res = $this->addBalance($sold_user_id, 1, -$goldchainTrade->trade_qty, $goldchainTrade->trade_no, '交易成功扣除新淘链');
+        //1.扣除卖方的亚富链,增加卖方的提现币
+        $res = $this->addBalance($sold_user_id, 1, -$goldchainTrade->trade_qty, $goldchainTrade->trade_no, '交易成功扣除亚富链');
         if ($res['code'] == 0) {
             Db::rollback();
-            //throw new Exception('交易时扣除卖方新淘链异常');
+            //throw new Exception('交易时扣除卖方亚富链异常');
             $data = array(
                 'code' => 0,
                 'msg' => '交易信息中买家和卖家id不能为空(' . $res['msg'] . ')',
@@ -1367,7 +1367,7 @@ class GoldchainLogic
             );
             return $data;
         }
-        //2.扣除买方冻结的消费余额,增加买方的新淘链
+        //2.扣除买方冻结的消费余额,增加买方的亚富链
         $res = $this->frozenBalance($buy_user_id, 3, -$goldchainTrade->amount, $goldchainTrade->trade_no, '交易成功扣除冻结消费余额');
         if ($res['code'] == 0) {
             Db::rollback();
@@ -1379,13 +1379,13 @@ class GoldchainLogic
             );
             return $data;
         }
-        $res = $this->addBalance($buy_user_id, 1, $goldchainTrade->trade_qty, $goldchainTrade->trade_no, '交易成功增加新淘链');
+        $res = $this->addBalance($buy_user_id, 1, $goldchainTrade->trade_qty, $goldchainTrade->trade_no, '交易成功增加亚富链');
         if ($res['code'] == 0) {
             Db::rollback();
-            //throw new Exception('交易时增加买方新淘链异常');
+            //throw new Exception('交易时增加买方亚富链异常');
             $data = array(
                 'code' => 0,
-                'msg' => '交易时增加买方新淘链异常(' . $res['msg'] . ')',
+                'msg' => '交易时增加买方亚富链异常(' . $res['msg'] . ')',
                 'data' => null,
             );
             return $data;

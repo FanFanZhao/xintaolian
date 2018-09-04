@@ -1,7 +1,7 @@
 <?php
 /**
- * 新淘链支付
- * @author 新淘链商城
+ * 亚富链支付
+ * @author 亚富链商城
  */
 class xintaoPay
 {

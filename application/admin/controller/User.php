@@ -210,7 +210,7 @@ class User extends Base
             if ($res['status'] == 1) {
                 Db::name('users')->where("user_id", $res['result']['user_id'])->update(array('is_usercenter' => 1, 'nickname' => $data['nickname']));
                 if ($data['jin_num'] > 0) {
-                    accountLog($res['result']['user_id'], 0, 0, '导入增加新淘链', 0, 0, '', 0, 0, $data['jin_num']);
+                    accountLog($res['result']['user_id'], 0, 0, '导入增加亚富链', 0, 0, '', 0, 0, $data['jin_num']);
                 }
                 $this->success('添加成功', U('User/index'));
                 exit;
@@ -299,7 +299,7 @@ class User extends Base
         $strTable .= '<td style="text-align:center;font-size:12px;" width="*">余额</td>';
         // $strTable .= '<td style="text-align:center;font-size:12px;" width="*">积分</td>';
         $strTable .= '<td style="text-align:center;font-size:12px;" width="*">提现币</td>';
-        $strTable .= '<td style="text-align:center;font-size:12px;" width="*">新淘链</td>';
+        $strTable .= '<td style="text-align:center;font-size:12px;" width="*">亚富链</td>';
         $strTable .= '<td style="text-align:center;font-size:12px;" width="*">奉献值</td>';
         $strTable .= '<td style="text-align:center;font-size:12px;" width="*">算力</td>';
         $strTable .= '<td style="text-align:center;font-size:12px;" width="*">累计消费</td>';
@@ -438,11 +438,11 @@ class User extends Base
                 $this->ajaxReturn(['status' => 0, 'msg' => '用户提现币不足！！']);
             }
             $withdraw_money = $w_op_type ? $withdraw_money : 0 - $withdraw_money;
-            //加减新淘链
+            //加减亚富链
             $j_op_type = I('post.jin_act_type');
             $jin_num = I('post.jin_num');
             if ($w_op_type != 1 and $jin_num > $user['jin_num']) {
-                $this->ajaxReturn(['status' => 0, 'msg' => '用户新淘链不足！！']);
+                $this->ajaxReturn(['status' => 0, 'msg' => '用户亚富链不足！！']);
             }
             $jin_num = $j_op_type ? $jin_num : 0 - $jin_num;
             //加减奉献值

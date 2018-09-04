@@ -1,12 +1,12 @@
 <link rel="shortcut  icon" type="image/x-icon" href="__ROOT__/public/js/layer/skin/layer.css"/>
 <script src="__ROOT__/template/mobile/default/static/js/jsbridge-mini.js"></script>
-<include file="public/header" title="新淘链转账" body=""/>
+<include file="public/header" title="亚富链转账" body=""/>
 <style>
    .return a img{
      margin-top:0.55rem;
     }
 </style>
-<include file="public/header_nav" title="新淘链转账" href="javascript:history.back(-1)"/>
+<include file="public/header_nav" title="亚富链转账" href="javascript:history.back(-1)"/>
 		<div class="loginsingup-input ma-to-20">
 			<form method="post" id="returnform">
 				<div class="content30">
@@ -17,12 +17,12 @@
                         <span class="lsuIcon"></span>
 					</div>
                     <div class="lsu">
-                        <span>可转新淘链：</span>
+                        <span>可转亚富链：</span>
                         <input type="text" name="jin_num" id="jin_num" value="{$user['jin_num']}" readonly>
                     </div>
                     <div class="lsu">
                         <span>转账额度：</span>
-                        <input type="text" name="money" id="money" value="" placeholder="请输入新淘链" onKeyUp="CheckTransfer()">
+                        <input type="text" name="money" id="money" value="" placeholder="请输入亚富链" onKeyUp="CheckTransfer()">
                     </div>
                     <div class="lsu">
                         <span class="beizhuText">备注：</span>
@@ -85,7 +85,7 @@
         var money = $.trim($('#money').val());
         var num=money*(shou/100);
       //  num=num.toFixed(2);
-        document.getElementById('shouxu').value='转账手续费：'+shou+'%共计'+num+'新淘链';
+        document.getElementById('shouxu').value='转账手续费：'+shou+'%共计'+num+'亚富链';
     }
     function checkSubmit(){
         var money = $.trim($('#money').val());
@@ -105,10 +105,10 @@
         }
         
         if(Number(money) >  Number(jin_num)){
-            layer.msg("转账额度大于您的可转新淘链")
+            layer.msg("转账额度大于您的可转亚富链")
             return false;
         }
-        var str='转'+money+'新淘链到账户:'+public_key+'需收取：'+shouxu+'%手续费';
+        var str='转'+money+'亚富链到账户:'+public_key+'需收取：'+shouxu+'%手续费';
         layer.confirm(str,{
                 btn:['确定','取消']
                 },function(){

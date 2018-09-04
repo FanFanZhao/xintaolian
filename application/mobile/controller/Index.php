@@ -2,11 +2,11 @@
 
 /**
 
- * 新淘链商城
+ * 亚富链商城
 
  * ============================================================================
 
- * * 版权所有 2015-2027 新淘链，并保留所有权利。
+ * * 版权所有 2015-2027 亚富链，并保留所有权利。
 
  * 网站地址: 
 
@@ -33,6 +33,30 @@ use app\common\logic\StoreLogic;
 use Think\Db;
 
 class Index extends MobileBase {
+    public $user_id = 0;
+    public $user = array();
+
+    /*
+     * 初始化操作
+     */
+    public function _initialize()
+    {
+        parent::_initialize();
+        if (session('?user')) {
+            $user = session('user');
+            $user = M('users')->where("user_id", $user['user_id'])->find();
+            session('user', $user);  //覆盖session 中的 user
+            $this->user = $user;
+            $this->user_id = $user['user_id'];
+            $this->assign('user', $user); //存储用户信息
+        }
+        $nologin = array();
+        if (!$this->user_id && !in_array(ACTION_NAME, $nologin)) {
+            header("location:" . U('Mobile/User/login'));
+            exit;
+        }
+        $this->assign('order_status_coment', $order_status_coment);
+    }
 
 
 

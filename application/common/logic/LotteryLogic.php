@@ -177,7 +177,7 @@ class LotteryLogic
             $user_id,
             0,
             0,
-            '抽奖活动,喜中' . $number . '个新淘链',
+            '抽奖活动,喜中' . $number . '个亚富链',
             0,
             $lotteryResult->id,
             '',
@@ -189,14 +189,14 @@ class LotteryLogic
             Db::rollback();
             return array(
                 'code' => 0,
-                'msg' => '新淘链到账失败!',
+                'msg' => '亚富链到账失败!',
                 'data' => $lotteryResult,
             );
         }
         Db::commit();
         return array(
             'code' => 1,
-            'msg' => '恭喜您抽中'. $number . '个新淘链',
+            'msg' => '恭喜您抽中'. $number . '个亚富链',
             'data' => $lotteryResult,
         );
     }

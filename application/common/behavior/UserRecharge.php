@@ -75,25 +75,25 @@ class UserRecharge
     {
         $rebateRatio = 0.10;
         $money = $order->account * $rebateRatio;
-        $this->rebateUserChain($user, $order, $money, '充值成功向一级推荐人返等值新淘链');
+        $this->rebateUserChain($user, $order, $money, '充值成功向一级推荐人返等值亚富链');
     }
 
     public function rebateLevel2Parent(Users $user, Recharge $order)
     {
         $rebateRatio = 0.05;
         $money = $order->account * $rebateRatio;
-        $this->rebateUserChain($user, $order, $money, '充值成功向二级推荐人返等值新淘链');
+        $this->rebateUserChain($user, $order, $money, '充值成功向二级推荐人返等值亚富链');
     }
 
     public function rebateLevel3Parent(Users $user, Recharge $order)
     {
         $rebateRatio = 0.03;
         $money = $order->account * $rebateRatio;
-        $this->rebateUserChain($user, $order, $money, '充值成功向三级推荐人返等值新淘链');
+        $this->rebateUserChain($user, $order, $money, '充值成功向三级推荐人返等值亚富链');
     }
 
     /**
-     * 给用户等值新淘链
+     * 给用户等值亚富链
      *
      * @param Users $user 用户模型
      * @param Float $money 价值
@@ -103,7 +103,7 @@ class UserRecharge
     public function rebateUserChain(Users $user, Recharge $order, Float $money = 0, String $memo = '')
     {
         $openPrice = action('common/Goldchain/getOpenPrice', array(), 'logic', true);
-        $addJinnum = bcdiv($money, $openPrice, config('default_decimal_scale')); //等值新淘链
+        $addJinnum = bcdiv($money, $openPrice, config('default_decimal_scale')); //等值亚富链
         Db::startTrans();
         $user->jin_num += $addJinnum;
         $user->jin_total += $addJinnum;

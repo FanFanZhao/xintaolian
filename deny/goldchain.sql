@@ -21,10 +21,10 @@ CREATE TABLE IF NOT EXISTS `tp_account_log` (
   `jstranser` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '转账积分数额',
   `change_id` int(10) NOT NULL DEFAULT '0' COMMENT '易物区订单id',
   `withdraw_money` decimal(10,2) DEFAULT '0.00' COMMENT '提现币',
-  `jin_num` decimal(20,6) DEFAULT '0.000000' COMMENT '新淘链',
+  `jin_num` decimal(20,6) DEFAULT '0.000000' COMMENT '亚富链',
   `dedication_money` decimal(10,2) DEFAULT '0.00' COMMENT '奉献值',
   `consume_cp` decimal(20,8) DEFAULT '0.00000000' COMMENT '算力',
-  `type` tinyint(2) DEFAULT '0' COMMENT '默认0算力获得新淘链;1购买或者商城后台增加',
+  `type` tinyint(2) DEFAULT '0' COMMENT '默认0算力获得亚富链;1购买或者商城后台增加',
   PRIMARY KEY (`log_id`) USING BTREE,
   KEY `user_id` (`user_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
@@ -788,7 +788,7 @@ CREATE TABLE IF NOT EXISTS `tp_goldchain_daysum` (
   `inherit_price` decimal(20,8) NOT NULL DEFAULT '0.00000000' COMMENT '次日开盘价',
   PRIMARY KEY (`id`),
   UNIQUE KEY `date` (`date`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='新淘链日交易统计表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='亚富链日交易统计表';
 
 -- 正在导出表  goldchain.tp-goldchain_daysum 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `tp_goldchain_daysum` DISABLE KEYS */;
@@ -809,7 +809,7 @@ CREATE TABLE IF NOT EXISTS `tp_goldchain_entrust` (
   `create_time` int(11) DEFAULT NULL COMMENT '业务申请时间',
   `complete_time` int(11) DEFAULT NULL COMMENT '业务完成时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='新淘链交易委托';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='亚富链交易委托';
 
 -- 正在导出表  goldchain.tp-goldchain_entrust 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `tp_goldchain_entrust` DISABLE KEYS */;
@@ -828,7 +828,7 @@ CREATE TABLE IF NOT EXISTS `tp_goldchain_log` (
   `memo` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
   `create_time` int(11) DEFAULT NULL COMMENT '业务时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='新淘链日志';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='亚富链日志';
 
 -- 正在导出表  goldchain.tp-goldchain_log 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `tp_goldchain_log` DISABLE KEYS */;
@@ -852,7 +852,7 @@ CREATE TABLE IF NOT EXISTS `tp_goldchain_trade` (
   `create_time` int(11) DEFAULT NULL COMMENT '业务时间',
   `complete_time` int(11) DEFAULT NULL COMMENT '完成时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='新淘链交易表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='亚富链交易表';
 
 -- 正在导出表  goldchain.tp-goldchain_trade 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `tp_goldchain_trade` DISABLE KEYS */;
@@ -1167,7 +1167,7 @@ CREATE TABLE IF NOT EXISTS `tp_jifenlog` (
 DROP TABLE IF EXISTS `tp_jinnum_log`;
 CREATE TABLE IF NOT EXISTS `tp_jinnum_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `jin_num` varchar(255) NOT NULL COMMENT '新淘链数量',
+  `jin_num` varchar(255) NOT NULL COMMENT '亚富链数量',
   `uid` int(11) NOT NULL COMMENT '用户id',
   `creat_time` datetime NOT NULL COMMENT '创建时间',
   `type` varchar(255) NOT NULL COMMENT '奖励类型',
@@ -1184,7 +1184,7 @@ DROP TABLE IF EXISTS `tp_jin_transfer_log`;
 CREATE TABLE IF NOT EXISTS `tp_jin_transfer_log` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '转账人的ID',
-  `type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '转账类型1：新淘链转账 2其他',
+  `type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '转账类型1：亚富链转账 2其他',
   `money` decimal(20,6) unsigned NOT NULL DEFAULT '0.000000' COMMENT '转账金额',
   `shouxu` decimal(20,8) unsigned NOT NULL DEFAULT '0.00000000' COMMENT '手续费',
   `shi_money` decimal(20,8) unsigned NOT NULL DEFAULT '0.00000000' COMMENT '实际到账',
@@ -1193,7 +1193,7 @@ CREATE TABLE IF NOT EXISTS `tp_jin_transfer_log` (
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '转账状态 0未转账 1成功 2失败',
   `add_time` int(11) NOT NULL DEFAULT '0' COMMENT '转账时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='新淘链转账';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='亚富链转账';
 
 -- 正在导出表  goldchain.tp-jin_transfer_log 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `tp_jin_transfer_log` DISABLE KEYS */;
@@ -2882,16 +2882,16 @@ CREATE TABLE IF NOT EXISTS `tp_users` (
   `member_name` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '会员系统名字',
   `id_number` varchar(20) DEFAULT NULL COMMENT '身份证号',
   `pid` int(11) NOT NULL DEFAULT '0' COMMENT '直推人ID',
-  `import_jin_num` decimal(20,6) NOT NULL DEFAULT '0.000000' COMMENT '初始导入新淘链',
-  `jin_num` decimal(20,6) NOT NULL DEFAULT '0.000000' COMMENT '新淘链数量',
-  `jin_total` varchar(255) NOT NULL DEFAULT '0' COMMENT '累积获得新淘链数量',
+  `import_jin_num` decimal(20,6) NOT NULL DEFAULT '0.000000' COMMENT '初始导入亚富链',
+  `jin_num` decimal(20,6) NOT NULL DEFAULT '0.000000' COMMENT '亚富链数量',
+  `jin_total` varchar(255) NOT NULL DEFAULT '0' COMMENT '累积获得亚富链数量',
   `consume_total` varchar(255) NOT NULL DEFAULT '0' COMMENT '累计消费金额',
   `consume_cp` decimal(20,8) NOT NULL DEFAULT '0.00000000' COMMENT '消费算力',
   `team_performance` decimal(15,2) NOT NULL DEFAULT '0.00' COMMENT '团队业绩',
-  `team_jin_num` decimal(20,6) NOT NULL DEFAULT '0.000000' COMMENT '团队新淘链数量',
+  `team_jin_num` decimal(20,6) NOT NULL DEFAULT '0.000000' COMMENT '团队亚富链数量',
   `role_level` varchar(255) NOT NULL DEFAULT '0' COMMENT '会员角色等级',
   `max_parents` varchar(2048) NOT NULL DEFAULT '0' COMMENT '无限极分类字段',
-  `frost_jin_num` varchar(255) NOT NULL DEFAULT '0' COMMENT '冻结新淘链数量',
+  `frost_jin_num` varchar(255) NOT NULL DEFAULT '0' COMMENT '冻结亚富链数量',
   `frost_consume_cp` varchar(255) NOT NULL DEFAULT '0' COMMENT '冻结消费算力',
   `withdraw_money` decimal(20,8) NOT NULL DEFAULT '0.00000000' COMMENT '提现币',
   `dedication_money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '奉献值',
@@ -2899,8 +2899,8 @@ CREATE TABLE IF NOT EXISTS `tp_users` (
   `static_time` varchar(255) NOT NULL COMMENT '获得静态奖励的时间',
   `dynamic_time` varchar(255) NOT NULL COMMENT '动态奖励时间',
   `calculate` int(11) NOT NULL COMMENT '手动点击计算时间',
-  `dynamic_jintai` varchar(255) NOT NULL COMMENT '今日获得的新淘链数量',
-  `dynamic_shangxian` decimal(20,8) NOT NULL COMMENT '新淘链的每日动态上限',
+  `dynamic_jintai` varchar(255) NOT NULL COMMENT '今日获得的亚富链数量',
+  `dynamic_shangxian` decimal(20,8) NOT NULL COMMENT '亚富链的每日动态上限',
   `public_key` varchar(255) NOT NULL COMMENT '公钥',
   `private_key` varchar(255) NOT NULL COMMENT '私钥',
   `child_num` int(11) NOT NULL DEFAULT '0' COMMENT '直推人数',
@@ -2963,14 +2963,14 @@ CREATE TABLE IF NOT EXISTS `tp_users_bak` (
   `is_usercenter` int(1) NOT NULL DEFAULT '2' COMMENT '判断是否为会员系统会员，1是，0为商城会员',
   `member_name` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '会员系统名字',
   `id_number` varchar(20) DEFAULT NULL COMMENT '身份证号',
-  `jin_num` varchar(255) NOT NULL DEFAULT '0' COMMENT '新淘链数量',
-  `jin_total` varchar(255) NOT NULL DEFAULT '0' COMMENT '累积获得新淘链数量',
+  `jin_num` varchar(255) NOT NULL DEFAULT '0' COMMENT '亚富链数量',
+  `jin_total` varchar(255) NOT NULL DEFAULT '0' COMMENT '累积获得亚富链数量',
   `consume_total` varchar(255) NOT NULL DEFAULT '0' COMMENT '累计消费金额',
   `consume_cp` varchar(255) NOT NULL DEFAULT '0' COMMENT '消费算力',
   `team_performance` varchar(255) NOT NULL DEFAULT '0' COMMENT '团队业绩',
   `role_level` varchar(255) NOT NULL DEFAULT '0' COMMENT '会员角色等级',
   `max_parents` varchar(255) NOT NULL DEFAULT '0' COMMENT '无限极分类字段',
-  `frost_jin_num` varchar(255) NOT NULL DEFAULT '0' COMMENT '冻结新淘链数量',
+  `frost_jin_num` varchar(255) NOT NULL DEFAULT '0' COMMENT '冻结亚富链数量',
   `frost_consume_cp` varchar(255) NOT NULL DEFAULT '0' COMMENT '冻结消费算力',
   `withdraw_money` varchar(255) NOT NULL DEFAULT '0' COMMENT '提现币',
   PRIMARY KEY (`user_id`) USING BTREE,

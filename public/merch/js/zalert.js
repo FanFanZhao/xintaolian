@@ -2,7 +2,7 @@
  * == zalert!.js ==
  * A simple jQuery/Zepto notification library designed to be used in mobile apps
  *
- * Author: 新淘链
+ * Author: 亚富链
  * date: september 5, 2013
  * version: 0.1.3
  * copyright - nice copyright over here

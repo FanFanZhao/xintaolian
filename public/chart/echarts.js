@@ -18725,7 +18725,7 @@ var globalDefault = {
     // color: ['#bcd3bb', '#e88f70', '#edc1a5', '#9dc5c8', '#e1e8c8', '#7b7c68', '#e5b5b5', '#f0b489', '#928ea8', '#bda29a'],
     // color: ['#cc5664', '#9bd6ec', '#ea946e', '#8acaaa', '#f1ec64', '#ee8686', '#a48dc1', '#5da6bc', '#b9dcae'],
     // Dark colors:
-    color: ['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'],
+    color: ['#f1ad46','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'],
 
     gradientColor: ['#f6efa6', '#d88273', '#bf444c'],
 
@@ -23315,7 +23315,7 @@ var loadingDefault = function (api, opts) {
     opts = opts || {};
     defaults(opts, {
         text: 'loading',
-        color: '#c23531',
+        color: '#f1ad46',
         textColor: '#000',
         maskColor: 'rgba(255, 255, 255, 0.8)',
         zlevel: 0
@@ -23922,7 +23922,7 @@ var axisCommon = function () {
 var colorPalette = ['#dd6b66','#759aa0','#e69d87','#8dc1a9','#ea7e53','#eedd78','#73a373','#73b9bc','#7289ab', '#91ca8c','#f49f42'];
 var theme = {
     color: colorPalette,
-    backgroundColor: '#333',
+    backgroundColor: '#fff',
     tooltip: {
         axisPointer: {
             lineStyle: {
@@ -34045,7 +34045,7 @@ var defaultOption = {
         onZeroAxisIndex: null,
         // 属性lineStyle控制线条样式
         lineStyle: {
-            color: '#333',
+            color: '#fff',
             width: 1,
             type: 'solid'
         },
@@ -42326,7 +42326,7 @@ SeriesModel.extend({
 
         itemStyle: {
             color: 'lightsteelblue',
-            borderColor: '#c23531',
+            borderColor: '#f1ad46',
             borderWidth: 1.5
         },
 
@@ -48701,7 +48701,7 @@ var GaugeSeries = SeriesModel.extend({
             // 默认显示，属性show控制显示与否
             show: true,
             lineStyle: {       // 属性lineStyle控制线条样式
-                color: [[0.2, '#91c7ae'], [0.8, '#63869e'], [1, '#c23531']],
+                color: [[0.2, '#91c7ae'], [0.8, '#63869e'], [1, '#f1ad46']],
                 width: 30
             }
         },
@@ -48752,7 +48752,7 @@ var GaugeSeries = SeriesModel.extend({
             // x, y，单位px
             offsetCenter: [0, '-40%'],
             // 其余属性默认使用全局文本样式，详见TEXTSTYLE
-            color: '#333',
+            color: '#fff',
             fontSize: 15
         },
         detail: {
@@ -52456,7 +52456,7 @@ var SankeySeries = SeriesModel.extend({
 
         itemStyle: {
             borderWidth: 1,
-            borderColor: '#333'
+            borderColor: '#fff'
         },
 
         lineStyle: {
@@ -53897,13 +53897,13 @@ var CandlestickSeries = SeriesModel.extend({
         layout: null, // 'horizontal' or 'vertical'
 
         itemStyle: {
-            color: '#c23531', // 阳线 positive
-            color0: '#314656', // 阴线 negative     '#c23531', '#314656'
+            color: '#f1ad46', // 阳线 positive
+            color0: '#f1ad46', // 阴线 negative     '#f1ad46', '#314656'
             borderWidth: 1,
             // FIXME
             // ec2中使用的是lineStyle.color 和 lineStyle.color0
-            borderColor: '#c23531',
-            borderColor0: '#314656'
+            borderColor: '#f1ad46',
+            borderColor0: '#f1ad46'
         },
 
         emphasis: {
@@ -58168,7 +58168,7 @@ var AxisPointerModel = extendComponentModel({
             margin: 50,
             // color: '#1b8bbd'
             // color: '#2f4554'
-            color: '#333',
+            color: '#fff',
             shadowBlur: 3,
             shadowColor: '#aaa',
             shadowOffsetX: 0,
@@ -62461,7 +62461,7 @@ var LegendModel = extendComponentModel({
 
         textStyle: {
             // 图例文字颜色
-            color: '#333'
+            color: '#fff'
         },
         // formatter: '',
         // 选择模式，默认开启图例开关
@@ -63010,7 +63010,7 @@ var ScrollableLegendModel = LegendModel.extend({
         pageIconInactiveColor: '#aaa',
         pageIconSize: 15, // Can be [10, 3], which represents [width, height]
         pageTextStyle: {
-            color: '#333'
+            color: '#fff'
         },
 
         animationDurationUpdate: 800
@@ -63505,7 +63505,7 @@ extendComponentModel({
         backgroundColor: 'rgba(50,50,50,0.7)',
 
         // 提示边框颜色
-        borderColor: '#333',
+        borderColor: '#fff',
 
         // 提示边框圆角，单位px，默认为4
         borderRadius: 4,
@@ -68803,7 +68803,7 @@ extendComponentModel({
         textStyle: {
             fontSize: 18,
             fontWeight: 'bolder',
-            color: '#333'
+            color: '#fff'
         },
         subtextStyle: {
             color: '#aaa'
@@ -70237,7 +70237,7 @@ var SliderZoomModel = DataZoomModel.extend({
         realtime: true,
         zoomLock: false,                        // Whether disable zoom.
         textStyle: {
-            color: '#333'
+            color: '#fff'
         }
     }
 
@@ -71861,7 +71861,7 @@ var VisualMapModel = extendComponentModel({
         formatter: null,
         text: null,                // 文本，如['高', '低']，兼容ec2，text[0]对应高值，text[1]对应低值
         textStyle: {
-            color: '#333'          // 值域文字颜色
+            color: '#fff'          // 值域文字颜色
         }
     },
 
@@ -75989,7 +75989,7 @@ var SliderTimelineModel = TimelineModel.extend({
         checkpointStyle: {
             symbol: 'circle',
             symbolSize: 13,
-            color: '#c23531',
+            color: '#f1ad46',
             borderWidth: 5,
             borderColor: 'rgba(194,53,49, 0.5)',
             animation: true,
@@ -76019,16 +76019,16 @@ var SliderTimelineModel = TimelineModel.extend({
             label: {
                 show: true,
                 // 其余属性默认使用全局文本样式，详见TEXTSTYLE
-                color: '#c23531'
+                color: '#f1ad46'
             },
 
             itemStyle: {
-                color: '#c23531'
+                color: '#f1ad46'
             },
 
             controlStyle: {
-                color: '#c23531',
-                borderColor: '#c23531',
+                color: '#f1ad46',
+                borderColor: '#f1ad46',
                 borderWidth: 2
             }
         },
@@ -77638,8 +77638,8 @@ DataView.defaultOption = {
     backgroundColor: '#fff',
     textColor: '#000',
     textareaColor: '#fff',
-    textareaBorderColor: '#333',
-    buttonColor: '#c23531',
+    textareaBorderColor: '#fff',
+    buttonColor: '#f1ad46',
     buttonTextColor: '#fff'
 };
 

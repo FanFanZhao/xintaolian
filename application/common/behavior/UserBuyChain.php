@@ -80,21 +80,21 @@ class UserBuyChain
     {
         $rebateRatio = 0.10;
         $money = $order->amount * $rebateRatio;
-        $this->rebateUserWithdaw($user, $order, $money, '交易市场购买新淘链成功,向一级推荐人返提现币');
+        $this->rebateUserWithdaw($user, $order, $money, '交易市场购买亚富链成功,向一级推荐人返提现币');
     }
 
     public function rebateLevel2Parent(Users $user, GoldchainTrade $order)
     {
         $rebateRatio = 0.05;
         $money = $order->amount * $rebateRatio;
-        $this->rebateUserWithdaw($user, $order, $money, '交易市场购买新淘链成功,向二级推荐人返提现币');
+        $this->rebateUserWithdaw($user, $order, $money, '交易市场购买亚富链成功,向二级推荐人返提现币');
     }
 
     public function rebateLevel3Parent(Users $user, GoldchainTrade $order)
     {
         $rebateRatio = 0.03;
         $money = $order->amount * $rebateRatio;
-        $this->rebateUserWithdaw($user, $order, $money, '交易市场购买新淘链成功,向三级推荐人返提现币');
+        $this->rebateUserWithdaw($user, $order, $money, '交易市场购买亚富链成功,向三级推荐人返提现币');
     }
 
     /**

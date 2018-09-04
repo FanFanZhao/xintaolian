@@ -149,7 +149,7 @@ function getPrivateKey($cert_path=SDK_SIGN_CERT_PATH, $cert_pwd=SDK_SIGN_CERT_PW
 
 
 /**
- * Author: 新淘链
+ * Author: 亚富链
  * data: 20110510
  * 密码转PIN
  * Enter description here ...
@@ -217,7 +217,7 @@ function  Pin2PinBlock( &$sPin )
 			return $sBuf;
 		}
 		/**
-	 * Author: 新淘链
+	 * Author: 亚富链
 	 * data: 20110510
 	 * Enter description here ...
 	 * @param $sPan

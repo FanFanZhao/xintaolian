@@ -1,6 +1,6 @@
 
-<include file="public/header" title="新淘链"/>
-<include file="public/header_nav" title="新淘链"  href="javascript:history.go(-1);"/>
+<include file="public/header" title="亚富链"/>
+<include file="public/header_nav" title="亚富链"  href="javascript:history.go(-1);"/>
 <style>
 	html, body {
 		height: 100%;
@@ -335,9 +335,9 @@
 						</div>
 					</div>
 					<div class="rc_info">
-						<p>认筹单价：{$recognize.price}元/枚</p>
-						<p>认筹总量：3亿枚</p>
-						<p>剩余数量：{$recognize.remain_qty}个</p>
+						<p>认筹单价：{$recognize.price}元GB</p>
+						<p>认筹总量：3亿GB</p>
+						<p>剩余能量：{$recognize.remain_qty}GB</p>
 					</div>
 				</div>
 				<div class="rc_tt">
@@ -346,7 +346,7 @@
 			</div>
 
 			<div class="balance" href="javascript:;">
-				<div class="title">众筹数量剩余{$remainRatio}%</div>						
+				<div class="title">众筹能量剩余{$remainRatio}%</div>						
 				<div class="progress"><div class="inner"></div></div>
 			</div>
 
@@ -367,7 +367,7 @@
 							<foreach name="buyList" id="buy">
 								<li class="flex-box">
 									恭喜<span>会员{$buy.safe_mobile}</span>成功购买
-									<span>{$buy.buy_qty}</span>个新淘链
+									<span>{$buy.buy_qty}</span>GB算能
 								</li>
 							</foreach>
 						</empty>
@@ -378,7 +378,7 @@
 							<foreach name="buyList" id="buy">
 								<li class="flex-box">
 									恭喜<span>会员{$buy.safe_mobile}</span>成功购买
-									<span>{$buy.buy_qty}</span>个新淘链
+									<span>{$buy.buy_qty}</span>GB亚富链
 								</li>
 							</foreach>
 						</ul>
@@ -392,7 +392,7 @@
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;天&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;秒
 					</span>
 				</div>
-				<a href="javascript:;" class="joinIn">加入新淘</a>
+				<a href="javascript:;" class="joinIn">加入亚富</a>
 			</div>
 
 	     	
@@ -402,14 +402,14 @@
 		<div class="chain hide">
             <div class="chainBox">
                 <div class="chainText">
-                    <h1>请输入购买新淘数量</h1>
-                    <h2>众筹期间时间和数量有限，抓住机会！</h2>
+                    <h1>请输入购买亚富能量</h1>
+                    <h2>众筹期间时间和能量有限，抓住机会！</h2>
                     <div class="input flex-box">
                         <!-- <span class="cut"></span> -->
                         <input id="numinput" type="number" value="100">
                         <!-- <span class="add"></span> -->
                     </div>
-                    <p class="flex-box pricemoney"><span class="price">{$recognize.price} </span>元/个，共需花费 <span class="money">10</span> 元</p>
+                    <p class="flex-box pricemoney"><span class="price">{$recognize.price} </span>元/GB，共需花费 <span class="money">10</span> 元</p>
                 </div>
                 <div class="btn" id="buy_lido" data-place-url="/lido/place_buy_order.html">
                 </div>
@@ -679,7 +679,7 @@
 		}
 	    
 	    
-	    //加入新淘按钮
+	    //加入亚富按钮
 	    $('.joinIn').click(function(){
 	    	$('.chain').fadeIn();
 			$('.mask').fadeIn();
