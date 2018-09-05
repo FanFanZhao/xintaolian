@@ -12,6 +12,14 @@
     #chartitem .charts{
         height:  10.932rem
     }
+    .take-goods{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .take-goods .takeitem{
+        flex: 1;
+    }
 </style>
 <section  style="background: #333;width: 100%;overflow: hidden;">
 <div class="row">
@@ -48,21 +56,21 @@
          </div>
          <div class="take-goods">
             <div class="takeitem take-active">
-                <div class="input-sell">
+                <div class="input-sell ">
                     <input type="number" id="gmnum" placeholder="请输入购买数量">
                     <input type="number" id="gmpis" placeholder="请输入购买单价">
-                </div>
-                <div class="btn-sell">
-                    <input type="submit" id="gm" value="买入">
+                    <div class="btn-sell">
+                        <input type="submit" id="gm" value="买入">
+                    </div>
                 </div>
             </div>
-            <div class="takeitem">
+            <div class="takeitem take-active">
                 <div class="input-sell">
                     <input type="number" id="mcnum" placeholder="请输入出售数量">
                     <input type="number" id="mcpis" placeholder="请输入出售单价">
-                </div>
-                <div class="btn-sell">
-                    <input type="submit" id="mc" value="卖出" style="background: #f1ad46">
+                    <div class="btn-sell">
+                        <input type="submit" id="mc" value="卖出" style="background: #f1ad46">
+                    </div>
                 </div>
             </div>
          </div>
@@ -84,7 +92,6 @@
                     <div class="middle-sell">
                         <p style="font-size: .547rem;color: #2A81F4"><span>{{item.amount}}G</span></p>
                         <p style="margin-top: .213rem">数量：<span>{{item.trade_qty}}</span></p>
-                        <p style="margin-top: .213rem">{{item.create_time}}</p>
                     </div>
                 <div class="right-sell gm-btn" :data-id="item.id" :data-way="item.way">交易</div>
             </div>
@@ -100,7 +107,7 @@
                 <div class="middle-sell">
                     <p style="font-size: .547rem;color: #f10215"><span>{{item.amount}}G</span></p>
                     <p style="margin-top: .213rem">数量：<span>{{item.trade_qty}}</span></p>
-                    <p style="margin-top: .213rem">{{item.create_time}}</p>
+                    <!-- <p style="margin-top: .213rem">{{item.create_time}}</p> -->
                 </div>
                 <div class="right-sell gm-btn" :data-id="item.id" :data-way="item.way"  style="background: #f10215">购买</div>
             </div>
@@ -192,10 +199,8 @@
         }else{
          $(".sell-box p").eq(1).addClass("sell-red");   
         }
-
-
-        $(".take-goods .takeitem").removeClass("take-active");
-        $(".take-goods .takeitem").eq(n).addClass("take-active");
+        // $(".take-goods .takeitem").removeClass("take-active");
+        // $(".take-goods .takeitem").eq(n).addClass("take-active");
         $(".demodata>.demo").removeClass("data-active");
         $(".demodata>.demo").eq(n).addClass("data-active");
     })
