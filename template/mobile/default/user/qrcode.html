@@ -1,45 +1,70 @@
-<include file="public/header" title="我的推广码" body="g4"/>
-<include file="public/header_nav" title="我的推广码" href="javascript:history.back(-1);"/>
+<include file="public/header" title="分享好友" />
+<include file="public/header_nav" title="分享好友" href="javascript:history.back(-1);"/>
 <style>
-	.my{
-		background:url("__STATIC__/images/background.jpg") no-repeat;
-		background-size:cover;
-		height: 28rem;
-		
-	}
-	body{
-		    background-color: #040d2e !important;
-	}		
+    .qr_box{
+        padding: 2rem 1rem;
+    }
+    .img_box{
+        background:rgba(255, 255, 255, 0.2);
+        border-radius: .6rem;
+        padding: 1rem 0;
+    }
+    .img_box img{
+        width: 65%;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+    }
+    .img_box .tt{
+        margin-top: 3rem;
+        text-align: center;
+        color: #f1ad46;
+        font-size: .6rem;
+    }
+    .copy{
+        text-align: center;
+        font-size: .7rem;
+    }
+    .copy a{
+        border-bottom: 1px solid #fff;
+        display: inline-block;
+        padding: .1rem .2rem;
+        color: #fff;
+
+    }
 </style>
-		<div class="floor my p setting">
-			<div class="content">
-				
-					<img src="__ROOT__{$pic}" alt="推广二维码" style="margin:0 auto;display: block;width: 5rem;
-    margin-top: 14rem;"/>
-					
-				
-					<!--<div class="myorder p bo">
-						<div class="content30">
-							<a href="{:U('Mobile/User/authinfo')}">
-								<div class="order">
-									<div class="fl">
-										<span>实名认证</span>
-									</div>
-									<div class="fr">
-										<i class="Mright"></i>
-									</div>
-								</div>
-							</a>
-						</div>
-					&lt;!&ndash;</div>&ndash;&gt;
-				</div>-->
-			
-			
-		</div>
-      </div>
+    <div class="floor p setting">
+        <div class="qr_box">	
+            <div class="img_box">
+                <img src="__ROOT__{$pic}" alt="推广二维码" />
+                <p class="tt">扫描二维码即可分享好友哟</p>
+            </div>			
+        </div>
+        <p class="copy">
+            <span hidden="" id="txt"></span>
+            <a href="javascript:;" onclick="copyUrl();">复制下载链接</a>
+        </p>
+    </div>
 <script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
 <include file="public/wx_share"/> 
 <script>
+    function copyUrl()
+    {
+        var txt=$("#txt").text();
+        copy(txt);
+    }
+
+    function copy(message) {
+        var input = document.createElement("input");
+        input.value = message;
+        document.body.appendChild(input);
+        input.select();
+        input.setSelectionRange(0, input.value.length), document.execCommand('Copy');
+        document.body.removeChild(input);
+        layer.open({content:'复制成功了哦',time:2});
+    }
+    
+  
 //显示上传照片
 window.URL = window.URL || window.webkitURL;
 function handleFiles(obj) {
