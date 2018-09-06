@@ -20,6 +20,50 @@
     .take-goods .takeitem{
         flex: 1;
     }
+    .demo li{
+        border-bottom: .26rem solid #505050;
+    }
+    .sellList{
+        color: #909090;
+    }
+    .item-v{
+        display: flex;
+        align-items: center;
+        padding: .3rem 0;
+        border-bottom: 1px solid #404040;
+    }
+    .item-v .txt{
+        flex: 1;
+    }
+    .item-v .big{
+        font-size: .7rem;
+        color: #b9b9b9;
+        margin-top: .3rem;
+    }
+    .sellbtnbox p{
+        color: #f1ad46;
+    }
+    .sellbtnbox p span{
+        font-size: .7rem;
+        
+    }
+    .sellbtnbox{
+        display: flex;
+        align-items: center;
+        padding: .3rem 0;
+    }
+    .sellbtnbox .item-b{
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+    .sellList .sellbtn{
+        background-color: #f1ad46;
+        color: #fff;
+        padding: .3rem 1.2rem;
+        border-radius: 1.2rem;
+        display: inline-block;
+    }
 </style>
 <section  style="background: #333;width: 100%;overflow: hidden;">
 <div class="row">
@@ -50,10 +94,7 @@
 <section>
 <form action="" submit-type="ajax">
     <div class="sellgec">
-        <div class="sell-box">
-            <p class="sell-active">买入XTC</p>
-            <p>卖出XTC</p>
-         </div>
+        
          <div class="take-goods">
             <div class="takeitem take-active">
                 <div class="input-sell ">
@@ -74,16 +115,18 @@
                 </div>
             </div>
          </div>
+         <div class="sell-box">
+            <p class="sell-active">买入XTC</p>
+            <p>卖出XTC</p>
+        </div>
     </div>
 </form>
 </section>
-<style>
-    
-</style>
+
 <section>
 <div class="demodata demo-hidden" id="app">
     <ul class="demo data-active" style="background: #333;margin-bottom: 2rem">
-        <li v-for="item in selists">
+        <!-- <li v-for="item in selists">
             <div class="sell-data">
                     <div class="left-sell">
                         <p>昵称：<span>{{item.nickname}}</span></p>
@@ -95,23 +138,58 @@
                     </div>
                 <div class="right-sell gm-btn" :data-id="item.id" :data-way="item.way">交易</div>
             </div>
+        </li> -->
+        <li v-for="item in selists" class="sellList">
+            <div class="data-info">
+                <p class="tuimobile">{{item.nickname}} </p>
+                <div class="item-v">
+                    <div class="txt">
+                        <p>数量</p>
+                        <p class="big">{{item.trade_qty}}</p>
+                    </div>
+                    <div class="txt">
+                        <p>单价</p>
+                        <p class="big">￥{{item.price}}</p>
+                    </div>
+                </div>
+                <div class="sellbtnbox">
+                    <p class="item-b"> 总金额：<span>￥{{item.amount}}</span></p>
+                    <div class="item-b">
+                        <div class="sellbtn  gm-btn" :data-id="item.id" :data-way="item.way" >交易</div>
+
+                    </div>
+                    
+                </div>
+            </div>
         </li>
     </ul>
     <ul class="demo"  style="background: #333; margin-bottom: 2rem">
-        <li v-for="item in gmlists">
-            <div class="sell-data">
-                <div class="left-sell">
-                    <p>昵称：<span>{{item.nickname}}</span></p>
-                    <p>单价：<span>{{item.price}}G</span></p>
+       
+        <li v-for="item in gmlists" class="sellList">
+            <div class="data-info">
+                <p class="tuimobile">{{item.nickname}} </p>
+                <div class="item-v">
+                    <div class="txt">
+                        <p>数量</p>
+                        <p class="big">{{item.trade_qty}}</p>
+                    </div>
+                    <div class="txt">
+                        <p>单价</p>
+                        <p class="big">￥{{item.price}}</p>
+                    </div>
                 </div>
-                <div class="middle-sell">
-                    <p style="font-size: .547rem;color: #f10215"><span>{{item.amount}}G</span></p>
-                    <p style="margin-top: .213rem">数量：<span>{{item.trade_qty}}</span></p>
-                    <!-- <p style="margin-top: .213rem">{{item.create_time}}</p> -->
+                <div class="sellbtnbox">
+                    <p class="item-b"> 总金额：<span>￥{{item.amount}}</span></p>
+                    <div class="item-b">
+                        <div class="sellbtn  gm-btn" :data-id="item.id" :data-way="item.way" >购买</div>
+
+                    </div>
+                    
                 </div>
-                <div class="right-sell gm-btn" :data-id="item.id" :data-way="item.way"  style="background: #f10215">购买</div>
             </div>
         </li>
+
+        
     </ul>
 </div>
 </section>
@@ -206,7 +284,15 @@
     })
     //<!-- 买入 -->
     $(function(){
+        // // 隐藏手机号
+        // $('.tuimobile').each(function (i ,item) {
+        //     var tel=$.trim($(this).html());
+        //     tel=tel.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2');
+        //     console.log(tel)
+        //     $('.tuimobile').html(tel);
+        // })
         
+
         $("#gm").bind("click",function(){
             var num=$("#gmnum").val();
             var price=$("#gmpis").val();
@@ -310,6 +396,10 @@
            url:'/Mobile/goldchain/buyList/',
            type:"GET",
            success:function(datas){
+               console.log(datas)
+               for(var i in datas){
+                   datas[i].nickname=datas[i].nickname.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2');
+               }
              that.selists=datas;
            }
        });
@@ -317,6 +407,9 @@
            url:'/Mobile/goldchain/soldList/',
            type:"GET",
            success:function(datas){
+            for(var i in datas){
+                   datas[i].nickname=datas[i].nickname.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2');
+               }
              that.gmlists=datas;
            }
        })         
