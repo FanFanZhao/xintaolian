@@ -1,4 +1,10 @@
 <include file="public/header" title="首页"/>
+<style>
+    .mslide li img{
+        width: 100%;
+        height: 6rem;
+    }
+</style>
 <!-- <script type="text/javascript">
 			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1265282947'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1265282947%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
 		</script> -->
@@ -34,7 +40,7 @@
     <div class="banner ban1">
         <div class="mslide" id="slideTpshop">
             <ul>
-                <!--广告表-->
+<!--                 //广告表 -->
                 <adv pid="2" limit="5" item="v">
                     <li><a href="{$v.ad_link}">
                         <img src="{$v[ad_code]}" title="{$v[title]}" style="{$v[style]}" alt="">
@@ -91,12 +97,12 @@
                 </span>
             </a> -->
             <!--<a href="my.html">-->
-            <a href="{:U('User/index')}">
+<!--             <a href="{:U('User/index')}">
                 <span>
-                    <img src="__STATIC__/images/icon_19.png" alt="个人中心" /><br />
+                    <img src="__STATIC__/images/geren.png" alt="个人中心" /><br />
                     <span>个人中心</span>
                 </span>
-            </a>
+            </a> -->
              <!-- <a href="javascript:alert('服务尚未开通');">
                 <span>
                     <img src="__STATIC__/images/icon_yanglaobaoxian.png" alt="众筹专区" /><br />
@@ -121,36 +127,42 @@
                     <span>亚富公告</span>
                 </span>
             </a>
-<!--             <a href="{:U('Recognize/index')}">
+            <a href="{:U('Recognize/index')}">
                 <span>
-                    <img src="__STATIC__/images/ico/ico_chain_bean.png" alt="亚富链" style="height: auto;background-color: #1c7aef;border-radius: 50%"/><br />
+                    <img src="__STATIC__/images/ico/ico_chain_bean.png" alt="亚富链" /><br />
                     <span>亚富认筹</span>
                 </span>
-            </a> -->
-            <a href="{:U('lottery/index')}">
+            </a>
+<!--             <a href="{:U('lottery/index')}">
 				<span>
                     <img src="__STATIC__/images/ico/choujiang2.png" alt="抽奖" /><br/>
                     <span>推广抽奖</span>
                 </span>
-            </a>
-            <a href="{:U('Gold/tel_charge')}">
+            </a> -->
+            <a href="{:U('Mobile/Gold/tel_charge')}">
 				<span>
-                    <img src="__STATIC__/images/icon_17.png" alt="话费充值" /><br/>
+                    <img src="__STATIC__/images/huafei.png" alt="话费充值" /><br/>
                     <span>话费充值</span>
                 </span>
             </a>
-            <a href="{:U('Gold/oil_charge')}">
+            <a href="{:U('Mobile/Gold/oil_charge')}">
 				<span>
                     <img src="__STATIC__/images/icon_03.png" alt="加油卡充值" /><br/>
                     <span>加油卡充值</span>
                 </span>
             </a>
-            <a href="{:U('lottery/index')}">
+            <a href="{:U('Mobile/Gold/suanli_withdraw')}">
 				<span>
                     <img src="__STATIC__/images/icon_09.png" alt="回购" /><br/>
                     <span>回购</span>
                 </span>
             </a>
+            <a href="#">
+                <span>
+                    <img src="__STATIC__/images/yule.png" alt="娱乐城" /><br/>
+                    <span>娱乐城</span>
+                </span>
+            </a>            
         </nav>
     </div>
       <style>
@@ -281,13 +293,222 @@ text-overflow:ellipsis;
 </div> -->
 <!--秒杀-end-->
     <!--广告位-start-->
-    <div class="banner ma-to-20">
+<!--     <div class="banner ma-to-20">
         <adv limit="1" item="v" pid="400">
             <a href="{$v.ad_link}">
             <img src="{$v[ad_code]}" title="{$v[title]}" style="{$v[style]}"/>
             </a>
         </adv>
-    </div>
+    </div> -->
+  <style>
+        .chi{
+            padding:1rem;
+            font-size: .6rem;
+             border-top: .3rem solid #505050;
+            border-bottom: .3rem solid #505050;
+            
+        }
+        .chi p{
+            text-align: center;
+          padding-bottom: .5rem;
+        }
+        .chi .timebox{
+           display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: .5rem;
+            margin-bottom: .5rem;
+            border-radius: .2rem;
+            background-color: #404040;
+            font-size: .6rem;
+        }
+        .chi .timebox span{
+            padding: .4rem .3rem;
+            background-color: #272727;
+            display: inline-block;
+           margin:0 .15rem;
+           border-radius: .1rem;
+           font-size: .8rem;
+        }
+        .chi .money{
+            font-size: 1rem;
+            color: #f1ad46;
+          
+        }
+    .chi .tip{
+            font-size: .4rem;
+            text-align: center;
+            padding-bottom: 0;
+        }
+    .mobox{
+            width: 100%;
+            border:.1rem solid #f1ad46;
+            border-radius: .4rem;
+            margin: 0 auto;
+            margin-bottom: .5rem;
+            padding:.5rem 0;
+        }
+    .money em{
+            vertical-align: super;
+            font-size: .5rem;
+      margin-left:.2rem;
+        }
+        .tuijian{
+
+        }
+        .tuijian .t{
+            width: 80%;
+            font-size: .8rem;
+            background-color: #404040;
+            margin: 1rem auto 0;
+            height: 2rem;
+            position: relative;
+            text-align: center;
+            line-height: 2rem;
+        }
+        .tuijian .l,
+        .tuijian .r{
+            position: absolute;
+            height: 2rem;
+            width: 2rem;
+            display: inline-block;
+            background-color: #333;
+            top:0;
+            z-index: 10
+        }
+        .tuijian .l{
+            transform: rotate(45deg);
+            left: -.5rem;
+        }
+        .tuijian .r{
+           right: -.5rem;
+            transform: rotate(-45deg);
+        }
+    </style>
+    <div class="chi">
+        <p class="timebox">倒计时：<span class="days"></span>天<span class="hours"></span>时<span class="minutes"></span>分<span class="seconds"></span>秒</p>
+        <div class='mobox'>
+            <p>奖金池</p>
+          <p class="money">￥100000.00<em>RMB</em></p>
+        </div>
+        <p class='tip'>认筹时间结束，推荐奖励最多的前十位用户瓜分奖金池内的所有奖金</p>
+        <div class="tuijian">
+            
+            <div class="t"><span class="l"></span>推荐奖励排行<span class="r"></span></div>
+            
+        </div>
+    </div> 
+    <style>
+			.lay_jieshao{
+				position: fixed;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				background-color: rgba(51, 51, 51, .9);
+				z-index: 12;
+				display: none;
+			}
+			.lay_jieshao .intorBox{
+				position: absolute;
+				top: 25%;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 90%;
+				font-size: .56rem;
+				border-radius: .3rem;
+				padding: .5rem;
+				height: 50%;
+				overflow-y:scroll;
+                background: #444;
+			}
+			
+			.lay_jieshao .intorBox .close{
+				position: absolute;
+				right: .3rem;
+				top: .3rem;
+				width: .8rem;
+				height: .8rem;
+				background: url(/template/mobile/default/static/images/clos.png) no-repeat center;
+			}
+			.lay_jieshao .intorBox img{
+                display: block;
+            }
+            .lay_jieshao .intorBox p {
+                line-height: 1rem;
+                 
+            }
+            .lay_jieshao .intorBox p span{
+                font-size: .56rem !important;
+            }
+            .xintao .flex{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                position: relative;
+            }
+            .success{
+                font-size: .6rem;
+                color: #f1ad46;
+                margin-top: 1.5rem;
+                width: 100%;
+            }
+           
+            .success .flex-box{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding-left: .5rem;
+                height: 1rem;
+                justify-content: center;
+                font-size: .6rem;
+                line-height: 1.5;
+            }
+        </style>
+        <div class="lay_jieshao">
+                <div class="intorBox">		
+                    <span class="close"></span>
+                    <div class="flex">
+				
+                            <div class=" success">
+                                <ul>       
+                                            <li class="flex-box" style="margin-top: 0px;">
+                                                恭喜<span>会员132****0635</span>成功购买
+                                                <span>1.00</span>GB算能
+                                            </li><li class="flex-box" style="margin-top: 0px;">
+                                                恭喜<span>会员132****0635</span>成功购买
+                                                <span>1.00</span>GB算能
+                                            </li><li class="flex-box" style="margin-top: 0px;">
+                                                恭喜<span>会员132****0635</span>成功购买
+                                                <span>1.00</span>GB算能
+                                            </li><li class="flex-box" style="margin-top: 0px;">
+                                                恭喜<span>会员132****0635</span>成功购买
+                                                <span>10.00</span>GB算能
+                                            </li><li class="flex-box" style="margin-top: 0px;">
+                                                恭喜<span>会员132****0635</span>成功购买
+                                                <span>1.00</span>GB算能
+                                            </li><li class="flex-box" style="margin-top: 0px;">
+                                                恭喜<span>会员132****0635</span>成功购买
+                                                <span>10.00</span>GB算能
+                                            </li><li class="flex-box" style="margin-top: 0px;">
+                                                恭喜<span>会员132****0635</span>成功购买
+                                                <span>1.00</span>GB算能
+                                            </li><li class="flex-box" style="margin-top: 0px;">
+                                                恭喜<span>会员132****0635</span>成功购买
+                                                <span>1.00</span>GB算能
+                                            </li><li class="flex-box" style="margin-top: 0px;">
+                                                恭喜<span>会员132****0635</span>成功购买
+                                                <span>1.00</span>GB算能
+                                            </li><li class="flex-box" style="margin-top: 0px;">
+                                                恭喜<span>会员132****0635</span>成功购买
+                                                <span>1.00</span>GB算能
+                                            </li></ul>	
+                            </div>
+                           
+                         </div>
+                    </div>
+            </div>  
     <div class="floor advertisement">
         <div class="content">
             <div class="le lefhe fl">
@@ -388,7 +609,7 @@ text-overflow:ellipsis;
     <!--猜您喜欢-start-->
     <div class="floor guesslike">
         <div class="banner">
-            <img src="__STATIC__/images/ind_52.jpg" alt="商品列表"/>
+            <img src="__STATIC__/images/ind_55.jpg" alt="商品列表"/>
         </div>
         <div class="likeshop">
             <div id="J_ItemList">
@@ -439,6 +660,43 @@ text-overflow:ellipsis;
         }
     }
     setInterval(GetRTime2,1000);
+    var times=24*60*60;
+    timeDown();
+    cuntDown();
+    function timeDown() {
+			var timer = null;
+			timer = setInterval(cuntDown, 1000);
+			if (times < 0) {
+				clearInterval(timer)
+			}
+		}
+
+		function cuntDown() {
+			var day = 0, hour = 0, minute = 0, second = 0;
+			if (times > 0) {
+				day = Math.floor(times / (60 * 60 * 24));
+				hour = Math.floor(times / (60 * 60)) - (day * 24);
+				minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
+				second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+			}
+			if (day <= 9) {
+				day = '0' + day;
+			}
+			if (hour <= 9) {
+				hour = '0' + hour;
+			}
+			if (minute <= 9) {
+				minute = '0' + minute;
+			}
+			if (second <= 9) {
+				second = '0' + second;
+			}
+			$('.days').text(day)
+            $('.hours').text(hour)
+            $('.minutes').text(minute)
+            $('.seconds').text(second)
+			times--;
+		}
     /**
      * 继续加载猜您喜欢
      * */
@@ -585,6 +843,12 @@ function AutoScroll() {
             $('.lay_tanceng .close').click(function(){
                 console.log(123)
                 $('.lay_tanceng').hide();
+            })
+            $('.tuijian').click(function(){
+                $('.lay_jieshao').show();
+            })
+            $('.close').click(function(){
+                $('.lay_jieshao').hide();
             })
         })
     </script>
